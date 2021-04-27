@@ -1,6 +1,5 @@
-import { Card, ListGroup, Button, Nav } from 'react-bootstrap'
 import { EditTags } from './EditTags'
-import { FaEdit, FaTags } from 'react-icons/fa'
+import { FaTags } from 'react-icons/fa'
 
 export function Star({ star, addTag, removeTag }) {
 
