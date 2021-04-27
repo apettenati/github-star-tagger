@@ -2,6 +2,8 @@
 
 Add tags to your starred repositories on GitHub!
 
+[Live Link](https://apettenati.github.io/github-star-tags/)
+
 ## TODO
 
 - [X] fetch star data from github API
@@ -11,6 +13,8 @@ Add tags to your starred repositories on GitHub!
 - [X] add functionality to addTag
 - [X] add functionality to removeTag
 - [X] add component to change username
-- [ ] add button to fetch stars by command only (to limit API hits)
+- [X] add button to fetch stars by command only (to limit API hits)
+- [ ] refresh stars when username is changed
 - [ ] add component to filter tags
 - [ ] save changes to local storage
+- [ ] update CSS
