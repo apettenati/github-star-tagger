@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Stars } from './Stars'
+import { User } from './User'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function App() {
@@ -9,12 +10,14 @@ export function App() {
   return (
     <div>
       <div>
-        <p>Current Username: {username}</p>
-        <button onClick={() => setUsername(prompt("Username", username))}>Set Username</button>
+        <User
+          username={username}
+          setUsername={setUsername}
+        />
         {/* <button onClick={getStarData}></button> */}
       </div>
       <br />
-      <Stars username={username}/>
+      <Stars username={username} />
     </div>
   )
 }

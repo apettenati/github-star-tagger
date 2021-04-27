@@ -9,7 +9,6 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
 
   return (
     <div className="tags">
-
       <Button variant="link" onClick={handleShow}>
         <FaEdit />
       </Button>
