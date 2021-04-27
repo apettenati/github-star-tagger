@@ -3,19 +3,22 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { FaTags, FaEdit,  FaTimes } from 'react-icons/fa'
 
 export function EditTags({ starID, tags, addTag, removeTag }) {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [text, setText] = useState('')
 
   function onSubmit(event) {
     event.preventDefault()
     const id = Number(event.target.id)
-    const newTag = event.target['add-tag'].value.trim()
+    // const newTag = event.target['add-tag'].value.trim()
+    const newTag = text.trim()
     if (newTag === '') {
       alert('Please enter text to add a new tag')
       return
     }
     addTag(id, newTag)
+    setText('')
   }
 
   return (
@@ -31,7 +34,12 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
         <Modal.Body>
           <Form id={starID} onSubmit={onSubmit}>
             <Form.Label htmlFor="add-tag"><h4>Add Tag</h4></Form.Label>
-              <Form.Control type="text" name="add-tag" />
+              <Form.Control
+              type="text"
+              name="add-tag"
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              />
               <Button className="mt-2 btn btn-success" type="submit">Add Tag</Button>
           </Form>
           <br />
