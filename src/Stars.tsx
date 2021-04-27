@@ -17,60 +17,7 @@ export function Stars({ username }) {
   // const [stars, setStars] = useState(newStarData)
   const [stars, setStars] = useState(starDataWithTags)
 
-  async function getResponseObject(url: string) {
-    // get the json response containing user star data from provided url
-    const response = await fetch(url)
-    if (response.ok) {
-      const json = await response.json()
-      // console.log('json response', json)
-      return json
-    }
-    throw new Error('Failed to get response object')
-  }
-
-  async function getLastPage(url: string) {
-    // get link data, identify the last URL, and return the page number
-    const response = await fetch(url)
-    if (response.ok) {
-      const links = response.headers.get('Link')
-      const regex = '.*page=(.*)>; rel="last"'
-      const lastPageNumber = parseInt(links.match(regex)[1])
-      // setLastPage(lastPageNumber)
-      return lastPageNumber
-    }
-    throw Error('Failed to get last page')
-  }
-
-  async function getStarData() {
-    // initialize first link with username
-    let pageNumber = 1
-    let url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
-    // console.log('url: ', url)
-    // get API link data from header
-    const lastPage = await getLastPage(url)
-    console.log('last page from getLastPage', lastPage)
-    // loop through all star pages and append json response to array of stars
-    const starData = []
-    for (pageNumber; pageNumber <= lastPage; pageNumber++) {
-      // console.log('page number: ', pageNumber)
-      // console.log('url: ', url)
-      url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
-      let data: object = await getResponseObject(url)
-      starData.push(data)
-      // console.log('for loop:', pageNumber, starData)
-    }
-    console.log('final starData: ', starData)
-    return starData
-  }
-
-  function addTag(event) {
-    event.preventDefault()
-    const id = Number(event.target.id)
-    const newTag = event.target['add-tag'].value.trim()
-    if (newTag === '') {
-      alert('Please enter text to add a new tag')
-      return
-    }
+  function addTag(id, newTag) {
     stars.forEach((star) => {
       if (star.id === id) {
         if (star.tags.includes(newTag)) {
@@ -87,8 +34,8 @@ export function Stars({ username }) {
     })
   }
 
-  function removeTag(starID, removedTag) {
-    setStars(stars.map((star) => star.id === starID ?
+  function removeTag(id, removedTag) {
+    setStars(stars.map((star) => star.id === id ?
       { ...star, tags: (star.tags.filter((tag) => tag !== removedTag)) }
       : star
     ))

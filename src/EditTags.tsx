@@ -7,6 +7,17 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function onSubmit(event) {
+    event.preventDefault()
+    const id = Number(event.target.id)
+    const newTag = event.target['add-tag'].value.trim()
+    if (newTag === '') {
+      alert('Please enter text to add a new tag')
+      return
+    }
+    addTag(id, newTag)
+  }
+
   return (
     <div className="tags">
       <Button variant="link" onClick={handleShow}>
@@ -18,7 +29,7 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
           <Modal.Title>Edit Tags</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form id={starID} onSubmit={addTag}>
+          <Form id={starID} onSubmit={onSubmit}>
             <Form.Label htmlFor="add-tag"><h4>Add Tag</h4></Form.Label>
               <Form.Control type="text" name="add-tag" />
               <Button className="mt-2 btn btn-success" type="submit">Add Tag</Button>
