@@ -2,6 +2,7 @@
 import starDataWithTags from './star-data-with-tags.json'
 import { useState } from 'react'
 import { Star } from './Star'
+import { GetStars } from './GetStars'
 
 export function Stars({ username }) {
   // const newStarData = starData.map((star) => ({ ...star, tags: [] as string[] }))
@@ -95,6 +96,10 @@ export function Stars({ username }) {
 
   return (
     <>
+      <GetStars
+        username={username}
+        setStars={setStars}
+      />
       <h3>Your Stars</h3>
       <h4>Total Stars: {stars.length}</h4>
       <div>

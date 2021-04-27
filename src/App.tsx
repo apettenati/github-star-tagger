@@ -14,7 +14,6 @@ export function App() {
           username={username}
           setUsername={setUsername}
         />
-        {/* <button onClick={getStarData}></button> */}
       </div>
       <br />
       <Stars username={username} />
