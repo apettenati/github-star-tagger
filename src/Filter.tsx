@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 // }
 
 export const Filter = ({ allTags, setFilteredTags }) => {
-  const [options, setOptions] = useState({ value: allTags, label: allTags })
+  const [options, setOptions] = useState({})
 
   useEffect(() => {
     createOptions(allTags)
@@ -21,7 +21,7 @@ export const Filter = ({ allTags, setFilteredTags }) => {
       return ({ 'value': tag, 'label': tag })
     })
     console.log({ options })
-    setOptions(options)
+    setOptions([...options, { 'value': 'no tags', 'label': 'no tags'} ])
   }
 
   return (
@@ -29,6 +29,7 @@ export const Filter = ({ allTags, setFilteredTags }) => {
       <h4>Tag Filter</h4>
       <div className="tag-selector">
         <Select
+          components={makeAnimated()}
           options={options}
           className="mb-3 font-weight-bold"
           placeholder="Filter Tags"

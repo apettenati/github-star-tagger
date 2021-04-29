@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
-import { FaTags, FaEdit, FaTimes } from 'react-icons/fa'
+import { FaEdit, FaTimes } from 'react-icons/fa'
 import { RemoveTag } from './Tag';
 
 export function EditTags({ starID, tags, addTag, removeTag }) {
