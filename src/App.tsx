@@ -10,16 +10,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export function App() {
   // const [username, setUsername] = useState<string>('')
   // const [stars, setStars] = useState(starDataWithTags)
-  const [ stars, setStars ] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
+  const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
   const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
   const [allTags, setAllTags] = useState([])
 
-  // useEffect(() => {
-  //   console.log('render')
-  //   localStorage.setItem('stars', JSON.stringify(stars))
-  //   localStorage.setItem('username', JSON.stringify(username))
-  //   getAllTags(stars)
-  // }, [stars, setStars, username, setUsername])
+  useEffect(() => {
+    console.log('render')
+    localStorage.setItem('stars', JSON.stringify(stars))
+    localStorage.setItem('username', JSON.stringify(username))
+    getAllTags(stars)
+  }, [stars, setStars, username, setUsername])
 
   function getAllTags(stars) {
     const allTags = []
@@ -29,12 +29,10 @@ export function App() {
           allTags.push(tag)
         }
       }))
-    }
-    )
+    })
     console.log({ allTags })
     setAllTags(allTags)
   }
-
 
   return (
     <Router>
