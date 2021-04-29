@@ -1,21 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button, Spinner } from 'react-bootstrap'
-import { Redirect, useHistory } from 'react-router-dom'
-import { FaSpinner } from 'react-icons/fa'
+import { useHistory } from 'react-router-dom'
 
-export function GetStars({ username, setStars }) {
+export function GetStars({ username, setStars, getAllTags }) {
 
   const [loading, isLoading] = useState(false)
   let history = useHistory()
-
-  // useEffect(() => {
-  //   const getStars = async () => {
-  //     const stars = await getStarData()
-  //     setStars(stars)
-  //   }
-
-  //   getStars()
-  // }, [])
 
   async function getResponseObject(url: string) {
     // get the json response containing user star data from provided url
@@ -62,6 +52,7 @@ export function GetStars({ username, setStars }) {
     const newStarData = starData.map((star) => ({ ...star, tags: [] as string[] }))
     console.log({ newStarData })
     setStars(newStarData)
+    getAllTags(newStarData)
     isLoading(false)
     history.push(`/github-star-tags/user/${username}`)
   }

@@ -1,5 +1,5 @@
 import { EditTags } from './EditTags'
-import { FaTags } from 'react-icons/fa'
+import { Tag } from './Tag'
 
 export function Star({ star, addTag, removeTag }) {
 
@@ -12,10 +12,8 @@ export function Star({ star, addTag, removeTag }) {
         <div className="d-flex justify-content-start gap-1">
           {(star.tags.length === 0) ? <button className="tag btn btn-outline-secondary">No tags</button> : null}
           {star.tags.map((tag) => (
-            <button key={tag} className="tag btn btn-outline-secondary">
-              <FaTags style={{ marginRight: 5, }} />
-              {tag}
-            </button>))}
+            <Tag tag={tag} />
+          ))}
           <EditTags
             starID={star.id}
             tags={star.tags}

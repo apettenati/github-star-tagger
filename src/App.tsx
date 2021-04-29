@@ -1,28 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { Stars } from './Stars'
 import { User } from './User'
 import { Footer } from './Footer'
 import { GetStars } from './GetStars'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import starData from './star-data.json'
-import starDataWithTags from './star-data-with-tags.json'
+// import starDataWithTags from './star-data-with-tags.json'
 
 export function App() {
-  const [username, setUsername] = useState('')
-  // const [username, setUsername] = useState('nathanph')
-  // const newStarData = starData.map((star) => ({ ...star, tags: [] as string[] }))
-  // const newStarData = []
+  // const [username, setUsername] = useState<string>('')
+  // const [stars, setStars] = useState(starDataWithTags)
+  const [ stars, setStars ] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
+  const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
+  const [allTags, setAllTags] = useState([])
 
-  // if (!localStorage.getItem('stars')) {
-  //   localStorage.setItem('stars', JSON.stringify(newStarData))
-  // }
+  useEffect(() => {
+    console.log('reder')
+    localStorage.setItem('stars', JSON.stringify(stars))
+    localStorage.setItem('username', JSON.stringify(username))
+  }, [stars, setStars, username, setUsername])
 
-  // const [ stars, setStars ] = useState(JSON.parse(localStorage.getItem('stars')))
-
-  // const [stars, setStars] = useState(newStarData)
-  const [stars, setStars] = useState(starDataWithTags)
-  // const [stars, setStars] = useState([])
+  function getAllTags(stars) {
+    const allTags = []
+    stars.map((star): void => {
+      (star.tags.map(tag => {
+        if (!allTags.includes(tag)) {
+          allTags.push(tag)
+        }
+      }))
+    }
+    )
+    console.log({ allTags })
+    setAllTags(allTags)
+  }
 
 
   return (
@@ -32,23 +42,29 @@ export function App() {
         <Link to={'/github-star-tags/user/' + username}>User</Link>
       </nav>
       <Route path='/github-star-tags' exact render={() => (
-          <div className="index">
-            <GetStars
-              username={username}
-              setStars={setStars}
-            />
-            <User
-              username={username}
-              setUsername={setUsername}
-            />
+        <div className="index">
+          <GetStars
+            username={username}
+            setStars={setStars}
+            getAllTags={getAllTags}
+          />
+          <User
+            username={username}
+            setUsername={setUsername}
+          />
           <br />
           <Footer />
         </div>
       )}
       />
       <Switch>
-        {/* <Route path='/github-star-tags/user/:user' render={({match}) => <Stars username={match.props.username} />} /> */}
-        <Route path='/github-star-tags/user/:user' render={() => <Stars stars={stars} setStars={setStars} />} />
+        <Route path='/github-star-tags/user/:user' render={() =>
+          <Stars
+            stars={stars}
+            setStars={setStars}
+            allTags={allTags}
+          />}
+        />
       </Switch>
     </Router>
   )

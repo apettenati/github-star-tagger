@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import { Star } from './Star'
+import { Filter } from './Filter'
 
-export function Stars({ stars, setStars }) {
+export function Stars({ stars, setStars, allTags }) {
 
   function addTag(id, newTag) {
     stars.forEach((star) => {
@@ -14,8 +14,7 @@ export function Stars({ stars, setStars }) {
           setStars(stars.map((star) => star.id === id ?
             { ...star, tags: [...star.tags, newTag] }
             : star
-          ))
-        }
+          ))}
       }
     })
   }
@@ -28,21 +27,24 @@ export function Stars({ stars, setStars }) {
   }
 
   return (
-    <>
+    <div className="stars">
       <h3>Your Stars</h3>
       <h5 className="mb-4 text-muted fst-italic">Total Stars: {stars.length}</h5>
+      <Filter allTags={allTags} />
       <div>
         <div className="row row-cols-1 row-cols-lg-4 gap-3">
-          {stars.map((star) => (
+          {(stars.length < 1 ? 'No stars' :
+          stars.map((star) => (
             <Star
               key={star.id}
               star={star}
               addTag={addTag}
               removeTag={removeTag}
             />
+          )
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
