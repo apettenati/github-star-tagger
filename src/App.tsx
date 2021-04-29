@@ -14,11 +14,12 @@ export function App() {
   const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
   const [allTags, setAllTags] = useState([])
 
-  useEffect(() => {
-    console.log('reder')
-    localStorage.setItem('stars', JSON.stringify(stars))
-    localStorage.setItem('username', JSON.stringify(username))
-  }, [stars, setStars, username, setUsername])
+  // useEffect(() => {
+  //   console.log('render')
+  //   localStorage.setItem('stars', JSON.stringify(stars))
+  //   localStorage.setItem('username', JSON.stringify(username))
+  //   getAllTags(stars)
+  // }, [stars, setStars, username, setUsername])
 
   function getAllTags(stars) {
     const allTags = []

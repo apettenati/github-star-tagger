@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
 import { FaTags, FaEdit, FaTimes } from 'react-icons/fa'
+import { RemoveTag } from './Tag';
 
 export function EditTags({ starID, tags, addTag, removeTag }) {
   const [show, setShow] = useState(false)
@@ -11,7 +12,6 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
   function onSubmit(event) {
     event.preventDefault()
     const id = Number(event.target.id)
-    // const newTag = event.target['add-tag'].value.trim()
     const newTag = text.trim()
     if (newTag === '') {
       alert('Please enter text to add a new tag')

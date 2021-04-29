@@ -10,9 +10,9 @@ export function Star({ star, addTag, removeTag }) {
         <p className="card-subtitle mb-4 text-muted fst-italic">{star.owner.login}</p>
         <p className="card-text fst-light">{star.description}</p>
         <div className="d-flex justify-content-start gap-1">
-          {(star.tags.length === 0) ? <button className="tag btn btn-outline-secondary">No tags</button> : null}
+          {(star.tags.length === 0) ? <button className="tag btn btn-outline-secondary disabled">No tags</button> : null}
           {star.tags.map((tag) => (
-            <Tag tag={tag} />
+            <Tag key={tag} tag={tag} />
           ))}
           <EditTags
             starID={star.id}

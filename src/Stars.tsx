@@ -14,7 +14,8 @@ export function Stars({ stars, setStars, allTags }) {
           setStars(stars.map((star) => star.id === id ?
             { ...star, tags: [...star.tags, newTag] }
             : star
-          ))}
+          ))
+        }
       }
     })
   }
