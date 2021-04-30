@@ -20,7 +20,8 @@ export function User({ username, setUsername }) {
   }
 
   return (
-    <div className="user">
+    <div className="card-body">
+      <h4 className="card-title pricing-card-title">Username</h4>
       <p><FaUser /> {username}</p>
       <Button className="btn btn-sm btn-secondary" onClick={handleShow}>
         Change Username

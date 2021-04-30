@@ -49,11 +49,11 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
               <div className="d-flex justify-content-start gap-1">
                 {(tags.length === 0) ? <button className="tag btn btn-outline-secondary disabled">No tags</button> : null}
                 {tags.map((tag) => (
-                  < RemoveTag 
-                  key={tag}
-                  tag={tag}
-                  starID={starID}
-                  removeTag={removeTag}
+                  < RemoveTag
+                    key={tag}
+                    tag={tag}
+                    starID={starID}
+                    removeTag={removeTag}
                   />
                 ))}
               </div>

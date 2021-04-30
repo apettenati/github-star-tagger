@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 export function GetStars({ username, setStars, getAllTags }) {
@@ -58,12 +58,10 @@ export function GetStars({ username, setStars, getAllTags }) {
   }
 
   return (
-    <Button className="get-star-data btn-lg btn-primary" onClick={getStarData}>
-      {
-        loading ?
-          <Spinner animation="border" role="status" />
-          : "Get Star Data"
-      }
-    </Button>
+    <button type="button" className="w-100 btn btn-lg btn-primary" onClick={getStarData}>
+      { loading
+        ? <Spinner animation="border" role="status" />
+        : "Get Star Data"}
+    </button>
   )
 }

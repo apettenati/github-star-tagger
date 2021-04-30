@@ -14,7 +14,8 @@ Add tags to your starred repositories on GitHub!
 - [X] add functionality to removeTag
 - [X] add component to change username
 - [X] add button to fetch stars by command only (to limit API hits)
-- [ ] refresh stars when username is changed
-- [ ] add component to filter tags
-- [ ] save changes to local storage
+- [X] refresh stars when get star data is clicked
+- [X] add component to filter tags with multi select option
+- [ ] add logic to filter tags
+- [X] save changes to local storage
 - [ ] update CSS

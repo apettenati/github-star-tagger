@@ -6,8 +6,8 @@ export function Stars({ stars, setStars, allTags }) {
   const [filteredTags, setFilteredTags] = useState([])
 
   useEffect(() => {
-    console.log({ filteredTags })
-    filterStars(filteredTags, stars)
+    console.log({filteredTags})
+    finalFilter()
   }, [filteredTags])
 
   function addTag(id, newTag) {
@@ -33,18 +33,26 @@ export function Stars({ stars, setStars, allTags }) {
       : star
     ))
   }
-  
-  function filterStars(filteredTags, stars) {
-    if (filteredTags.length < 1) return stars
 
-    const filteredStars = filteredTags.map((tag) => {
-      stars.filter((star) => star.tags.includes(tag.value))
-    })
-    console.log({ filteredStars })
+  function tagMatch(star) {
+    const show = false
+    filteredTags.forEach((tag) => {
+      if (star.tags.includes(tag)) {
+        const show = true
+        return show
+      }})
+    console.log(star.tags, {show})
+    return show
+    }
 
-    // setFilteredStars(filteredStars)
+  function finalFilter() {
+    setStars(stars.map((star) => filteredTags.length < 1 ?
+    { ...star, show: true}
+    :
+    {...star, show: tagMatch(star)}
+    ))
   }
-
+  
   return (
     <div className="stars">
       <h3>Your Stars</h3>
@@ -52,16 +60,6 @@ export function Stars({ stars, setStars, allTags }) {
       <Filter allTags={allTags} setFilteredTags={setFilteredTags} />
       <div>
         <div className="row row-cols-1 row-cols-lg-4 gap-3">
-          {/* {(filteredStars.length < 1
-            ? 'No stars'
-            : filteredStars.map((star) => (
-              <Star
-                key={star.id}
-                star={star}
-                addTag={addTag}
-                removeTag={removeTag}
-              />
-            )))} */}
           {(stars.length < 1 ? 'No stars' :
             stars.map((star) => (
               <Star

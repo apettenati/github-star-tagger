@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Nav } from './Nav'
 import { Stars } from './Stars'
 import { User } from './User'
 import { Footer } from './Footer'
@@ -8,8 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import starDataWithTags from './star-data-with-tags.json'
 
 export function App() {
-  // const [username, setUsername] = useState<string>('')
-  // const [stars, setStars] = useState(starDataWithTags)
   const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
   const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
   const [allTags, setAllTags] = useState([])
@@ -36,35 +35,49 @@ export function App() {
 
   return (
     <Router>
-      <nav className="navbar">
-        <Link to='/github-star-tags'>Home</Link>
-        <Link to={'/github-star-tags/user/' + username}>User</Link>
-      </nav>
-      <Route path='/github-star-tags' exact render={() => (
-        <div className="index">
-          <GetStars
-            username={username}
-            setStars={setStars}
-            getAllTags={getAllTags}
-          />
-          <User
-            username={username}
-            setUsername={setUsername}
-          />
-          <br />
-          <Footer />
-        </div>
-      )}
-      />
-      <Switch>
-        <Route path='/github-star-tags/user/:user' render={() =>
-          <Stars
-            stars={stars}
-            setStars={setStars}
-            allTags={allTags}
-          />}
+      <div className="container py-3">
+        <Nav username={username} />
+        <Route path='/github-star-tags' exact render={() => (
+          <main className="d-sm-flex flex-column justify-content-center">
+
+            <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
+              <h1 className="display-4 fw-normal">GitHub Star Tags</h1>
+              <p className="fs-5 text-muted">Add tags to your starred GitHub repos!</p>
+            </div>
+
+            <div className="main-card card rounded-3 shadow-sm">
+              <div className="card-header py-3">
+                <h2 className="my-0 fw-normal">Get Star Data</h2>
+              </div>
+              <div className="card-body">
+
+            <User
+              username={username}
+              setUsername={setUsername}
+            />
+                <GetStars
+                  username={username}
+                  setStars={setStars}
+                  getAllTags={getAllTags}
+                />
+              </div>
+            </div>
+
+          </main>
+        )}
         />
-      </Switch>
+        <Switch>
+          <Route path='/github-star-tags/user/:user' render={() =>
+            <Stars
+              stars={stars}
+              setStars={setStars}
+              allTags={allTags}
+            />}
+          />
+        </Switch>
+
+        <Footer />
+      </div>
     </Router>
   )
 }

@@ -1,31 +1,13 @@
-#root {
-  margin: 50px;
+body {
+  padding-top: 40px;
 }
 
-.navbar {
-  display: flex;
-  flex-direction: row;
-  width: 5%;
-}
-.index {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+main {
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
-.user {
-  margin: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-}
-
-.get-star-data {
-  margin: 50px;
-}
-
-footer {
-  margin-top: 50px;
+.main-card {
+  margin-left: 100px;
+  margin-right: 100px;
 }
