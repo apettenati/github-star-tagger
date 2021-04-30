@@ -49,7 +49,7 @@ export function GetStars({ username, setStars, getAllTags }) {
       let data = await getResponseObject(url)
       starData.push(...data)
     }
-    const newStarData = starData.map((star) => ({ ...star, tags: [] as string[] }))
+    const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], show: true }))
     console.log({ newStarData })
     setStars(newStarData)
     getAllTags(newStarData)
