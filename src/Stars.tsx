@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react'
 
 export function Stars({ stars, setStars, allTags }) {
   const [filteredTags, setFilteredTags] = useState([])
+  const [filteredStars, setFilteredStars] = useState(stars)
 
   useEffect(() => {
-    console.log({filteredTags})
-    finalFilter()
-  }, [filteredTags])
+    console.log({ filteredTags })
+    filterStars()
+  }, [filteredTags, stars])
 
   function addTag(id, newTag) {
     stars.forEach((star) => {
@@ -34,34 +35,38 @@ export function Stars({ stars, setStars, allTags }) {
     ))
   }
 
-  function tagMatch(star) {
-    const show = false
-    filteredTags.forEach((tag) => {
-      if (star.tags.includes(tag)) {
-        const show = true
-        return show
-      }})
-    console.log(star.tags, {show})
-    return show
+  function filterStars() {
+    if (filteredTags.length < 1) {
+      setFilteredStars(stars)
+    } else {
+      const currentTags = filteredTags.map((tag) => tag.value)
+      const filter = stars.filter((star) => {
+        return star.tags.some((s) => currentTags.includes(s))
+      })
+      console.log({ filter })
+      setFilteredStars(filter)
     }
-
-  function finalFilter() {
-    setStars(stars.map((star) => filteredTags.length < 1 ?
-    { ...star, show: true}
-    :
-    {...star, show: tagMatch(star)}
-    ))
   }
-  
+
+  function filterNoTags() {
+    const noTags = stars.filter((star) => star.tags.length === 0)
+    setFilteredStars(noTags)
+  }
+
+  function removeFilterNoTags() {
+    setFilteredStars(stars)
+  }
+
   return (
     <div className="stars">
       <h3>Your Stars</h3>
-      <h5 className="mb-4 text-muted fst-italic">Stars: {stars.length}</h5>
-      <Filter allTags={allTags} setFilteredTags={setFilteredTags} />
+      <h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
+      <h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
+      <Filter allTags={allTags} setFilteredTags={setFilteredTags} filterNoTags={filterNoTags} removeFilterNoTags={removeFilterNoTags} />
       <div>
         <div className="row row-cols-1 row-cols-lg-4 gap-3">
           {(stars.length < 1 ? 'No stars' :
-            stars.map((star) => (
+            filteredStars.map((star) => (
               <Star
                 key={star.id}
                 star={star}

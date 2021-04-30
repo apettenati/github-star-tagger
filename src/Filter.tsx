@@ -1,15 +1,8 @@
-import { FaTags, FaEdit, FaTimes } from 'react-icons/fa'
-import { Tag } from './Tag'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { useState, useEffect } from 'react'
 
-// interface FilterProps {
-//   allTags: any[]
-//   setFilteredTags: () => any
-// }
-
-export const Filter = ({ allTags, setFilteredTags }) => {
+export const Filter = ({ allTags, setFilteredTags, filterNoTags, removeFilterNoTags }) => {
   const [options, setOptions] = useState({})
 
   useEffect(() => {
@@ -21,7 +14,7 @@ export const Filter = ({ allTags, setFilteredTags }) => {
       return ({ 'value': tag, 'label': tag })
     })
     console.log({ options })
-    setOptions([...options, { 'value': 'no tags', 'label': 'no tags' }])
+    setOptions([...options])
   }
 
   return (
@@ -39,11 +32,13 @@ export const Filter = ({ allTags, setFilteredTags }) => {
         />
       </div>
       <div className="current-filter">
-        <h5> All Tags</h5>
+        {/* <h5> All Tags</h5>
         {(allTags.length < 1) && <p>No Tags</p>}
         {allTags.map((tag) => (
           <Tag key={tag} tag={tag} />
-        ))}
+        ))} */}
+        <button onClick={filterNoTags} className="btn btn-primary">Filter Stars No Tags</button>
+        <button onClick={removeFilterNoTags} className="ms-2 btn btn-outline-primary">Remove No Tags Filter</button>
       </div>
       <br />
     </div>

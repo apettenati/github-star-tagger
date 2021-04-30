@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Nav } from './Nav'
 import { Stars } from './Stars'
 import { User } from './User'
@@ -42,7 +42,7 @@ export function App() {
 
             <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
               <h1 className="display-4 fw-normal">GitHub Star Tags</h1>
-              <p className="fs-5 text-muted">Add tags to your starred GitHub repos!</p>
+              <p className="fs-5 text-muted">Add tags to your starred GitHub repositories!</p>
             </div>
 
             <div className="main-card card rounded-3 shadow-sm">
@@ -51,15 +51,17 @@ export function App() {
               </div>
               <div className="card-body">
 
-            <User
-              username={username}
-              setUsername={setUsername}
-            />
+                <User
+                  username={username}
+                  setUsername={setUsername}
+                />
+
                 <GetStars
                   username={username}
                   setStars={setStars}
                   getAllTags={getAllTags}
                 />
+
               </div>
             </div>
 
@@ -75,7 +77,6 @@ export function App() {
             />}
           />
         </Switch>
-
         <Footer />
       </div>
     </Router>
