@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,KACE,gBACF","file":"main.65c70bf8.chunk.css","sourcesContent":["body {\n  padding-top: 40px;\n}\n\nmain {\n  /* margin-left: 300px; */\n  /* margin-right: 300px; */\n}\n\n.main-card {\n  /* margin-left: 100px; */\n  /* margin-right: 100px; */\n}"]}
