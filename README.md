@@ -16,6 +16,15 @@ Add tags to your starred repositories on GitHub!
 - [X] add button to fetch stars by command only (to limit API hits)
 - [X] refresh stars when get star data is clicked
 - [X] add component to filter tags with multi select option
-- [ ] add logic to filter tags
+- [X] add logic to filter tags
 - [X] save changes to local storage
+- [ ] reset tag filter if no tags is selected or de-selected
+- [ ] handle API errors
+- [ ] validate username
 - [ ] update CSS
+
+## Enhancements
+
+- [ ] add "and" filter instead of just or?
+- [ ] implement database storage
+- [ ] github authentication?

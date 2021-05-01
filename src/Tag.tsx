@@ -11,20 +11,20 @@ interface RemoveTagProps {
 }
 
 export const Tag: React.FC<TagProps> = ({ tag }) => {
-  return (
-    <button key={tag} className="tag me-2 btn btn-outline-secondary">
-      <FaTags className="me-1" />
-      {tag}
-    </button>
-  )
+	return (
+		<button key={tag} className="tag me-2 btn btn-outline-secondary">
+			<FaTags className="me-1" />
+			{tag}
+		</button>
+	)
 }
 
 export const RemoveTag: React.FC<RemoveTagProps> = ({ tag, starID, removeTag }) => {
-  return (
-    <span id={starID.toString()} onClick={() => removeTag(starID, tag)} key={tag} className="tag btn btn-outline-danger">
-      <FaTags className="me-1" />
-      {tag}
-      <FaTimes className="ms-2" />
-    </span>
-  )
+	return (
+		<span id={starID.toString()} onClick={() => removeTag(starID, tag)} key={tag} className="tag btn btn-outline-danger">
+			<FaTags className="me-1" />
+			{tag}
+			<FaTimes className="ms-2" />
+		</span>
+	)
 }
