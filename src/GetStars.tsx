@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-export function GetStars({ username, setStars, getAllTags }) {
+export function GetStars({ username, setStars }) {
 
 	const [loading, isLoading] = useState(false)
 	const history = useHistory()
@@ -44,8 +44,6 @@ export function GetStars({ username, setStars, getAllTags }) {
 			return
 		}
 		isLoading(true)
-		// TODO: validate username against github api
-		// initialize first link with username
 		let pageNumber = 1
 		let url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
 		// get API link data from header
@@ -71,7 +69,6 @@ export function GetStars({ username, setStars, getAllTags }) {
 		const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], show: true }))
 		console.log({ newStarData })
 		setStars(newStarData)
-		getAllTags(newStarData)
 		isLoading(false)
 		history.push(`/github-star-tagger/user/${username}`)
 	}

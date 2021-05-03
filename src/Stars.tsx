@@ -78,19 +78,19 @@ export function Stars({ stars, setStars, allTags }) {
 					<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
 				</div>
 			</div>
-				<div className="row row-cols-4">
-					{(stars.length < 1 ?
-						'No stars' :
-						filteredStars.map((star) => (
-							<Star
-								key={star.id}
-								star={star}
-								addTag={addTag}
-								removeTag={removeTag}
-							/>
-						)
-						))}
-				</div>
+			<div className="row row-cols-3">
+				{(stars.length < 1 ?
+					'No stars' :
+					filteredStars.map((star) => (
+						<Star
+							key={star.id}
+							star={star}
+							addTag={addTag}
+							removeTag={removeTag}
+						/>
+					)
+					))}
+			</div>
 		</div>
 	)
 }

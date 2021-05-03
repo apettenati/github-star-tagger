@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Nav } from './Nav'
 import { Stars } from './Stars'
 import { User } from './User'
+import { Demo } from './Demo'
 import { Footer } from './Footer'
 import { GetStars } from './GetStars'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import starDataWithTags from './star-data-with-tags.json'
 
 export function App() {
 	const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
@@ -22,15 +22,17 @@ export function App() {
 
 	function getAllTags(stars) {
 		const allTags = []
-		stars.map((star): void => {
-			(star.tags.map(tag => {
-				if (!allTags.includes(tag)) {
-					allTags.push(tag)
-				}
-			}))
-		})
-		console.log({ allTags })
-		setAllTags(allTags)
+		if (stars.length > 1) {
+			stars.map((star): void => {
+				(star.tags.map(tag => {
+					if (!allTags.includes(tag)) {
+						allTags.push(tag)
+					}
+				}))
+			})
+			console.log({ allTags })
+			setAllTags(allTags)
+		}
 	}
 
 	return (
@@ -45,16 +47,18 @@ export function App() {
 							<p className="fs-5 text-muted">Add tags to your starred GitHub repositories!</p>
 						</div>
 
-							<GetStars
-								username={username}
-								setStars={setStars}
-								getAllTags={getAllTags}
-							/>
+						<GetStars
+							username={username}
+							setStars={setStars}
+						/>
 
-								<User
-									username={username}
-									setUsername={setUsername}
-								/>
+						<User
+							username={username}
+							setUsername={setUsername}
+						/>
+						<Demo
+							setStars={setStars}
+							setUsername={setUsername} />
 					</main>
 				)}
 				/>

@@ -1,4 +1,3 @@
-import { JSXElementConstructor } from 'react'
 import { FaTags, FaTimes } from 'react-icons/fa'
 
 interface TagProps {

@@ -21,5 +21,6 @@ Add tags to your starred repositories on GitHub!
 - [X] reset tag filter if no tags is selected or de-selected
 - [X] handle API errors
 - [X] validate username
-- [ ] update CSS
+- [X] update CSS
+- [X] add demo data
 - [ ] create pagination
