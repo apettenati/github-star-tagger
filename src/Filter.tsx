@@ -2,7 +2,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { useState, useEffect } from 'react'
 
-export const Filter = ({ allTags, setFilteredTags, filterNoTags, removeFilterNoTags }) => {
+export const Filter = ({ allTags, filteredTags, setFilteredTags, filterNoTags, showAll }) => {
 	const [options, setOptions] = useState({})
 
 	useEffect(() => {
@@ -14,7 +14,7 @@ export const Filter = ({ allTags, setFilteredTags, filterNoTags, removeFilterNoT
 			return ({ 'value': tag, 'label': tag })
 		})
 		console.log({ options })
-		setOptions([...options])
+		setOptions([...options, { 'value': 'no tags', 'label': 'no tags' }])
 	}
 
 	return (
@@ -29,16 +29,11 @@ export const Filter = ({ allTags, setFilteredTags, filterNoTags, removeFilterNoT
 					isSearchable
 					isMulti
 					onChange={setFilteredTags}
+					value={filteredTags}
 				/>
 			</div>
 			<div className="current-filter">
-				{/* <h5> All Tags</h5>
-        {(allTags.length < 1) && <p>No Tags</p>}
-        {allTags.map((tag) => (
-          <Tag key={tag} tag={tag} />
-        ))} */}
-				<button onClick={filterNoTags} className="btn btn-primary">Filter Stars No Tags</button>
-				<button onClick={removeFilterNoTags} className="ms-2 btn btn-outline-primary">Remove No Tags Filter</button>
+				<button onClick={showAll} className="btn btn-primary">Show All</button>
 			</div>
 			<br />
 		</div>

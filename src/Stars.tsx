@@ -40,9 +40,14 @@ export function Stars({ stars, setStars, allTags }) {
 			setFilteredStars(stars)
 		} else {
 			const currentTags = filteredTags.map((tag) => tag.value)
-			const filter = stars.filter((star) => {
+			let filter = stars.filter((star) => {
 				return star.tags.some((s) => currentTags.includes(s))
 			})
+			if (currentTags.includes('no tags')) {
+				console.log((currentTags.includes('no tags')))
+				const noTags = stars.filter((star) => star.tags.length === 0)
+				filter.push(...noTags)
+			}
 			console.log({ filter })
 			setFilteredStars(filter)
 		}
@@ -53,16 +58,16 @@ export function Stars({ stars, setStars, allTags }) {
 		setFilteredStars(noTags)
 	}
 
-	function removeFilterNoTags() {
+	function showAll() {
 		setFilteredStars(stars)
+		setFilteredTags([])
 	}
 
 	return (
-		<div className="stars">
-			<h3>Your Stars</h3>
+		<div className="stars row">
+			<Filter allTags={allTags} filteredTags={filteredTags} setFilteredTags={setFilteredTags} filterNoTags={filterNoTags} showAll={showAll} />
 			<h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
 			<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
-			<Filter allTags={allTags} setFilteredTags={setFilteredTags} filterNoTags={filterNoTags} removeFilterNoTags={removeFilterNoTags} />
 			<div>
 				<div className="row row-cols-1 row-cols-lg-4 gap-3">
 					{(stars.length < 1 ?

@@ -10,11 +10,13 @@ export function GetStars({ username, setStars, getAllTags }) {
 	async function getResponseObject(url: string) {
 		// get the json response containing user star data from provided url
 		const response = await fetch(url)
+		console.log({response})
 		if (response.ok) {
 			const json = await response.json()
 			return json
+		} else {
+			return -1
 		}
-		throw new Error('Failed to get response object')
 	}
 
 	async function getLastPage(url: string) {
@@ -25,8 +27,9 @@ export function GetStars({ username, setStars, getAllTags }) {
 			const regex = '.*page=(.*)>; rel="last"'
 			const lastPageNumber = parseInt(links.match(regex)[1])
 			return lastPageNumber
+		} else {
+			return -1
 		}
-		throw Error('Failed to get last page')
 	}
 
 	async function getStarData() {
@@ -41,12 +44,22 @@ export function GetStars({ username, setStars, getAllTags }) {
 		let url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
 		// get API link data from header
 		const lastPage = await getLastPage(url)
+		if (lastPage === -1) {
+			alert('User does not exist')
+			isLoading(false)
+			return
+		}
 		console.log('last page from getLastPage', lastPage)
 		// loop through all star pages and append json response to array of stars
 		const starData = []
 		for (pageNumber; pageNumber <= lastPage; pageNumber++) {
 			url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
 			const data = await getResponseObject(url)
+			if (data === -1) { 
+				alert('Failed to retrieve star data')
+				isLoading(false)
+				return
+			}
 			starData.push(...data)
 		}
 		const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], show: true }))

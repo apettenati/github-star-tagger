@@ -1,3 +1,4 @@
+import { JSXElementConstructor } from 'react'
 import { FaTags, FaTimes } from 'react-icons/fa'
 
 interface TagProps {
@@ -10,7 +11,7 @@ interface RemoveTagProps {
   removeTag: (starID: number, tag: string) => void
 }
 
-export const Tag: React.FC<TagProps> = ({ tag }) => {
+export const Tag = ({ tag }: TagProps) => {
 	return (
 		<button key={tag} className="tag me-2 btn btn-outline-secondary">
 			<FaTags className="me-1" />
