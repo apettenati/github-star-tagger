@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/github-star-tags/static/css/main.65c70bf8.chunk.css",
-    "main.js": "/github-star-tags/static/js/main.20da4c34.chunk.js",
-    "main.js.map": "/github-star-tags/static/js/main.20da4c34.chunk.js.map",
-    "runtime-main.js": "/github-star-tags/static/js/runtime-main.aa5a6d6a.js",
-    "runtime-main.js.map": "/github-star-tags/static/js/runtime-main.aa5a6d6a.js.map",
-    "static/css/2.3542fc70.chunk.css": "/github-star-tags/static/css/2.3542fc70.chunk.css",
-    "static/js/2.6367562d.chunk.js": "/github-star-tags/static/js/2.6367562d.chunk.js",
-    "static/js/2.6367562d.chunk.js.map": "/github-star-tags/static/js/2.6367562d.chunk.js.map",
-    "index.html": "/github-star-tags/index.html",
-    "static/css/2.3542fc70.chunk.css.map": "/github-star-tags/static/css/2.3542fc70.chunk.css.map",
-    "static/css/main.65c70bf8.chunk.css.map": "/github-star-tags/static/css/main.65c70bf8.chunk.css.map",
-    "static/js/2.6367562d.chunk.js.LICENSE.txt": "/github-star-tags/static/js/2.6367562d.chunk.js.LICENSE.txt"
+    "main.css": "/github-star-tagger/static/css/main.65c70bf8.chunk.css",
+    "main.js": "/github-star-tagger/static/js/main.39a85016.chunk.js",
+    "main.js.map": "/github-star-tagger/static/js/main.39a85016.chunk.js.map",
+    "runtime-main.js": "/github-star-tagger/static/js/runtime-main.eb5ee72e.js",
+    "runtime-main.js.map": "/github-star-tagger/static/js/runtime-main.eb5ee72e.js.map",
+    "static/css/2.3542fc70.chunk.css": "/github-star-tagger/static/css/2.3542fc70.chunk.css",
+    "static/js/2.d66c9e52.chunk.js": "/github-star-tagger/static/js/2.d66c9e52.chunk.js",
+    "static/js/2.d66c9e52.chunk.js.map": "/github-star-tagger/static/js/2.d66c9e52.chunk.js.map",
+    "index.html": "/github-star-tagger/index.html",
+    "static/css/2.3542fc70.chunk.css.map": "/github-star-tagger/static/css/2.3542fc70.chunk.css.map",
+    "static/css/main.65c70bf8.chunk.css.map": "/github-star-tagger/static/css/main.65c70bf8.chunk.css.map",
+    "static/js/2.d66c9e52.chunk.js.LICENSE.txt": "/github-star-tagger/static/js/2.d66c9e52.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.aa5a6d6a.js",
+    "static/js/runtime-main.eb5ee72e.js",
     "static/css/2.3542fc70.chunk.css",
-    "static/js/2.6367562d.chunk.js",
+    "static/js/2.d66c9e52.chunk.js",
     "static/css/main.65c70bf8.chunk.css",
-    "static/js/main.20da4c34.chunk.js"
+    "static/js/main.39a85016.chunk.js"
   ]
 }
