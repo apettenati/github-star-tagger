@@ -1,4 +1,4 @@
-# GitHub Star Tags
+# GitHub Star Tagger
 
 Add tags to your starred repositories on GitHub!
 
