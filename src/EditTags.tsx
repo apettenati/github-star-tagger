@@ -48,7 +48,7 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
 							<Form.Label htmlFor="remove-tag">Remove Tag</Form.Label>
 							<div className="d-flex justify-content-start gap-1">
 								{(tags.length === 0) ?
-									<button className="tag btn btn-outline-secondary disabled">No tags</button> : null}
+									<button className="tag btn btn-outline-secondary disabled">untagged</button> : null}
 								{tags.map((tag) => (
 									< RemoveTag
 										key={tag}

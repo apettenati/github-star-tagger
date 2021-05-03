@@ -22,3 +22,4 @@ Add tags to your starred repositories on GitHub!
 - [X] handle API errors
 - [X] validate username
 - [ ] update CSS
+- [ ] create pagination

@@ -14,7 +14,7 @@ export const Filter = ({ allTags, filteredTags, setFilteredTags, filterNoTags, s
 			return ({ 'value': tag, 'label': tag })
 		})
 		console.log({ options })
-		setOptions([...options, { 'value': 'no tags', 'label': 'no tags' }])
+		setOptions([...options, { 'value': 'untagged', 'label': 'untagged' }])
 	}
 
 	return (

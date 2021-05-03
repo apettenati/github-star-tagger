@@ -10,7 +10,7 @@ export function GetStars({ username, setStars, getAllTags }) {
 	async function getResponseObject(url: string) {
 		// get the json response containing user star data from provided url
 		const response = await fetch(url)
-		console.log({ response })
+		// console.log({ response })
 		if (response.ok) {
 			const json = await response.json()
 			return json
@@ -23,11 +23,16 @@ export function GetStars({ username, setStars, getAllTags }) {
 		// get link data, identify the last URL, and return the page number
 		const response = await fetch(url)
 		if (response.ok) {
-			const links = response.headers.get('Link')
-			console.log({links})
-			const regex = '.*page=(.*)>; rel="last"'
-			const lastPageNumber = parseInt(links.match(regex)[1])
-			return lastPageNumber
+			try {
+				const links = response.headers.get('Link')
+				// console.log({links})
+				const regex = '.*page=(.*)>; rel="last"'
+				const lastPageNumber = parseInt(links.match(regex)[1])
+				return lastPageNumber
+			} catch {
+				// links are not returned in headers if stars are only 1 page
+				return 1
+			}
 		} else {
 			return -1
 		}

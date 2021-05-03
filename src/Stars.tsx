@@ -43,8 +43,8 @@ export function Stars({ stars, setStars, allTags }) {
 			let filter = stars.filter((star) => {
 				return star.tags.some((s) => currentTags.includes(s))
 			})
-			if (currentTags.includes('no tags')) {
-				console.log((currentTags.includes('no tags')))
+			if (currentTags.includes('untagged')) {
+				console.log((currentTags.includes('untagged')))
 				const noTags = stars.filter((star) => star.tags.length === 0)
 				filter.push(...noTags)
 			}
@@ -65,7 +65,7 @@ export function Stars({ stars, setStars, allTags }) {
 
 	return (
 		<div className="stars container">
-			<div className="container d-flex justify-content-between">
+			<div className="container-fluid d-flex justify-content-between">
 				<Filter
 					allTags={allTags}
 					filteredTags={filteredTags}
@@ -78,19 +78,19 @@ export function Stars({ stars, setStars, allTags }) {
 					<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
 				</div>
 			</div>
-			<div className="container row row-cols-4 gap-2">
-				{(stars.length < 1 ?
-					'No stars' :
-					filteredStars.map((star) => (
-						<Star
-							key={star.id}
-							star={star}
-							addTag={addTag}
-							removeTag={removeTag}
-						/>
-					)
-					))}
-			</div>
+				<div className="row row-cols-4">
+					{(stars.length < 1 ?
+						'No stars' :
+						filteredStars.map((star) => (
+							<Star
+								key={star.id}
+								star={star}
+								addTag={addTag}
+								removeTag={removeTag}
+							/>
+						)
+						))}
+				</div>
 		</div>
 	)
 }
