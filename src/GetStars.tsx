@@ -24,6 +24,7 @@ export function GetStars({ username, setStars, getAllTags }) {
 		const response = await fetch(url)
 		if (response.ok) {
 			const links = response.headers.get('Link')
+			console.log({links})
 			const regex = '.*page=(.*)>; rel="last"'
 			const lastPageNumber = parseInt(links.match(regex)[1])
 			return lastPageNumber
