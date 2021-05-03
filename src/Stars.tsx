@@ -65,29 +65,31 @@ export function Stars({ stars, setStars, allTags }) {
 
 	return (
 		<div className="stars container">
-			<Filter
-				allTags={allTags}
-				filteredTags={filteredTags}
-				setFilteredTags={setFilteredTags}
-				filterNoTags={filterNoTags}
-				showAll={showAll}
-			/>
-			<h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
-			<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
-			<div>
-				<div className="row row-cols-1 row-cols-lg-4 gap-3">
-					{(stars.length < 1 ?
-						'No stars' :
-						filteredStars.map((star) => (
-							<Star
-								key={star.id}
-								star={star}
-								addTag={addTag}
-								removeTag={removeTag}
-							/>
-						)
-						))}
+			<div className="container d-flex justify-content-between">
+				<Filter
+					allTags={allTags}
+					filteredTags={filteredTags}
+					setFilteredTags={setFilteredTags}
+					filterNoTags={filterNoTags}
+					showAll={showAll}
+				/>
+				<div>
+					<h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
+					<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
 				</div>
+			</div>
+			<div className="container row row-cols-4 gap-2">
+				{(stars.length < 1 ?
+					'No stars' :
+					filteredStars.map((star) => (
+						<Star
+							key={star.id}
+							star={star}
+							addTag={addTag}
+							removeTag={removeTag}
+						/>
+					)
+					))}
 			</div>
 		</div>
 	)

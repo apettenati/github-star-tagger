@@ -18,7 +18,7 @@ export const Filter = ({ allTags, filteredTags, setFilteredTags, filterNoTags, s
 	}
 
 	return (
-		<div className="tag-filter">
+		<div className="tag-filter col-3">
 			<h4>Tag Filter</h4>
 			<div className="tag-selector">
 				<Select
