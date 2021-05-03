@@ -64,8 +64,14 @@ export function Stars({ stars, setStars, allTags }) {
 	}
 
 	return (
-		<div className="stars row">
-			<Filter allTags={allTags} filteredTags={filteredTags} setFilteredTags={setFilteredTags} filterNoTags={filterNoTags} showAll={showAll} />
+		<div className="stars container">
+			<Filter
+				allTags={allTags}
+				filteredTags={filteredTags}
+				setFilteredTags={setFilteredTags}
+				filterNoTags={filterNoTags}
+				showAll={showAll}
+			/>
 			<h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
 			<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {filteredStars.length}</h5>
 			<div>

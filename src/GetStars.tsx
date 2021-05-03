@@ -10,7 +10,7 @@ export function GetStars({ username, setStars, getAllTags }) {
 	async function getResponseObject(url: string) {
 		// get the json response containing user star data from provided url
 		const response = await fetch(url)
-		console.log({response})
+		console.log({ response })
 		if (response.ok) {
 			const json = await response.json()
 			return json
@@ -55,7 +55,7 @@ export function GetStars({ username, setStars, getAllTags }) {
 		for (pageNumber; pageNumber <= lastPage; pageNumber++) {
 			url = `https://api.github.com/users/${username}/starred?per_page=100&page=${pageNumber}`
 			const data = await getResponseObject(url)
-			if (data === -1) { 
+			if (data === -1) {
 				alert('Failed to retrieve star data')
 				isLoading(false)
 				return
@@ -71,8 +71,8 @@ export function GetStars({ username, setStars, getAllTags }) {
 	}
 
 	return (
-		<button type="button" className="w-100 btn btn-lg btn-primary" onClick={getStarData}>
-			{ loading ?
+		<button type="button" className="col-4 mx-auto mb-4 btn btn-lg btn-primary" onClick={getStarData}>
+			{loading ?
 				<Spinner animation="border" role="status" /> :
 				'Get Star Data'}
 		</button>

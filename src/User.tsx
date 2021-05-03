@@ -20,30 +20,35 @@ export function User({ username, setUsername }) {
   }
 
   return (
-    <div className="card-body">
-      <h4 className="card-title pricing-card-title">Username</h4>
-      <p><FaUser /> {username}</p>
-      <Button className="btn btn-sm btn-secondary" onClick={handleShow}>
-        Change Username
+    <div className="mt-4 p-0 card container-fluid col-2">
+      <div className="card-header">Username</div>
+
+      <div className="d-flex flex-column justify-content-center card-body">
+        <p><FaUser /> {username}</p>
+        <Button className="btn btn-sm btn-secondary" onClick={handleShow}>
+          Change Username
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>Edit Username</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form.Label htmlFor="new-username">Username</Form.Label>
-          <Form onSubmit={onSubmit}>
-            <Form.Control type="text" name="new-username" />
-            <Button className="mt-2 btn btn-success" type="submit">Update Username</Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClose} variant="outline-danger">
-            <FaTimes />
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header>
+            <Modal.Title>Edit Username</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Label htmlFor="new-username">Username</Form.Label>
+            <Form onSubmit={onSubmit}>
+              <Form.Control type="text" name="new-username" />
+              <Button className="mt-2 btn btn-success" type="submit">Update Username</Button>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={handleClose} variant="outline-danger">
+              <FaTimes />
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+
     </div>
+
   )
 }

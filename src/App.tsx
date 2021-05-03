@@ -38,33 +38,23 @@ export function App() {
 			<div className="container py-3">
 				<Nav username={username} />
 				<Route path='/github-star-tagger' exact render={() => (
-					<main className="d-sm-flex flex-column justify-content-center">
+					<main className="row d-flex flex-column justify-content-center">
 
-						<div className="pricing-header p-3 pb-md-4 mx-auto text-center">
+						<div className="mb-4 mx-auto text-center">
 							<h1 className="display-4 fw-normal">GitHub Star Tagger</h1>
 							<p className="fs-5 text-muted">Add tags to your starred GitHub repositories!</p>
 						</div>
 
-						<div className="main-card card rounded-3 shadow-sm">
-							<div className="card-header py-3">
-								<h2 className="my-0 fw-normal">Get Star Data</h2>
-							</div>
-							<div className="card-body">
+							<GetStars
+								username={username}
+								setStars={setStars}
+								getAllTags={getAllTags}
+							/>
 
 								<User
 									username={username}
 									setUsername={setUsername}
 								/>
-
-								<GetStars
-									username={username}
-									setStars={setStars}
-									getAllTags={getAllTags}
-								/>
-
-							</div>
-						</div>
-
 					</main>
 				)}
 				/>
