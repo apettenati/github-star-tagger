@@ -2,7 +2,7 @@
 
 Add tags to your starred repositories on GitHub!
 
-[Live Link](https://apettenati.github.io/github-star-tagger/)
+[Live Link](https://apettenati.github.io/github-star-tagger)
 
 ## TODO
 
