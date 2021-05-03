@@ -22,9 +22,3 @@ Add tags to your starred repositories on GitHub!
 - [X] handle API errors
 - [X] validate username
 - [ ] update CSS
-
-## Enhancements
-
-- [ ] add "and" filter instead of just or?
-- [ ] implement database storage
-- [ ] github authentication?
