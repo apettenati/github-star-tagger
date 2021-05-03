@@ -67,7 +67,7 @@ export function GetStars({ username, setStars, getAllTags }) {
 		setStars(newStarData)
 		getAllTags(newStarData)
 		isLoading(false)
-		history.push(`/github-star-tags/user/${username}`)
+		history.push(`/github-star-tagger/user/${username}`)
 	}
 
 	return (

@@ -37,7 +37,7 @@ export function App() {
 		<Router>
 			<div className="container py-3">
 				<Nav username={username} />
-				<Route path='/github-star-tags' exact render={() => (
+				<Route path='/github-star-tagger' exact render={() => (
 					<main className="d-sm-flex flex-column justify-content-center">
 
 						<div className="pricing-header p-3 pb-md-4 mx-auto text-center">
@@ -69,7 +69,7 @@ export function App() {
 				)}
 				/>
 				<Switch>
-					<Route path='/github-star-tags/user/:user' render={() =>
+					<Route path='/github-star-tagger/user/:user' render={() =>
 						<Stars
 							stars={stars}
 							setStars={setStars}
