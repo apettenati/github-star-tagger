@@ -19,7 +19,7 @@ Add tags to your starred repositories on GitHub!
 - [X] add logic to filter tags
 - [X] save changes to local storage
 - [X] reset tag filter if no tags is selected or de-selected
-- [ ] handle API errors
+- [X] handle API errors
 - [ ] validate username
 - [ ] update CSS
 
