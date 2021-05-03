@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,aACE,oBAAqB,CACrB,UACF,CAEA,mBACE,yBACF","file":"main.aa5dca2f.chunk.css","sourcesContent":[".star-header {\n  text-decoration: none;\n  color: black;\n}\n\n.star-header:hover {\n  text-decoration: underline;\n}"]}
