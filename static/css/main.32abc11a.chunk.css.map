@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,aACE,oBAAqB,CACrB,UACF,CAEA,mBACE,yBACF,CAEA,WACE,aACF","file":"main.32abc11a.chunk.css","sourcesContent":[".star-header {\n  text-decoration: none;\n  color: black;\n}\n\n.star-header:hover {\n  text-decoration: underline;\n}\n\n.star-card {\n  flex: 1 1 auto;\n}"]}
