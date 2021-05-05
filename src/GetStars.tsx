@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-export function GetStars({ username, setStars }) {
+export function GetStars({ username, setStars, setTags }) {
 
 	const [loading, isLoading] = useState(false)
 	const history = useHistory()
@@ -38,6 +38,14 @@ export function GetStars({ username, setStars }) {
 		}
 	}
 
+	function setTagData(starData) {
+		const tags = []
+		starData.forEach((star) => {
+			return tags.push({username, starID: star.id, tags: star.tags})
+		})
+		setTags(tags)
+	}
+
 	async function getStarData() {
 		if (username === '') {
 			alert('Username is blank. Please update username then try again.')
@@ -69,6 +77,7 @@ export function GetStars({ username, setStars }) {
 		const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], show: true }))
 		console.log({ newStarData })
 		setStars(newStarData)
+		setTagData(newStarData)
 		isLoading(false)
 		history.push(`/github-star-tagger/user/${username}`)
 	}

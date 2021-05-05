@@ -5,9 +5,11 @@ import { RemoveTag } from './Tag'
 
 export function EditTags({ starID, tags, addTag, removeTag }) {
 	const [show, setShow] = useState(false)
-	const handleClose = () => setShow(false)
-	const handleShow = () => setShow(true)
 	const [text, setText] = useState('')
+	const [tempStar, setTempStar] = useState({ starID, tags })
+
+	const handleShow = () => setShow(true)
+	const handleClose = () => setShow(false)
 
 	function onSubmit(event) {
 		event.preventDefault()

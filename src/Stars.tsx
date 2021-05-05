@@ -2,7 +2,7 @@ import { Star } from './Star'
 import { Filter } from './Filter'
 import { useState, useEffect } from 'react'
 
-export function Stars({ stars, setStars, allTags }) {
+export function Stars({ stars, setStars, allTags, tags, setTags }) {
 	const [filteredTags, setFilteredTags] = useState([])
 	const [filteredStars, setFilteredStars] = useState(stars)
 
@@ -23,6 +23,10 @@ export function Stars({ stars, setStars, allTags }) {
 						{ ...star, tags: [...star.tags, newTag] } :
 						star
 					))
+					setTags(tags.map((tag) => tag.starID === id ?
+						{...tag, tags: [...tag.tags, newTag]} :
+						tag
+					))
 				}
 			}
 		})
@@ -33,6 +37,10 @@ export function Stars({ stars, setStars, allTags }) {
 			{ ...star, tags: (star.tags.filter((tag) => tag !== removedTag)) } :
 			star
 		))
+		setTags(tags.map((tag) => tag.starID === id ?
+			{ ...tag, tags: (tag.tags.filter((tag) => tag !== removedTag)) } :
+			tag
+		))
 	}
 
 	function filterStars() {
@@ -41,9 +49,9 @@ export function Stars({ stars, setStars, allTags }) {
 		} else {
 			const currentTags = filteredTags.map((tag) => tag.value)
 			let filter = stars.filter((star) => {
-				return star.tags.some((s) => currentTags.includes(s))
+				return currentTags.every((activeTag) => star.tags.includes(activeTag))
 			})
-			if (currentTags.includes('untagged')) {
+			if (currentTags.includes('untagged') && currentTags.length === 1) {
 				console.log((currentTags.includes('untagged')))
 				const noTags = stars.filter((star) => star.tags.length === 0)
 				filter.push(...noTags)

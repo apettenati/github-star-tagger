@@ -24,4 +24,4 @@ Add tags to your starred repositories on GitHub!
 - [X] update CSS
 - [X] add demo data
 - [ ] create pagination
-- [ ] separate star and tag data in local storage
+- [X] separate star and tag data in local storage

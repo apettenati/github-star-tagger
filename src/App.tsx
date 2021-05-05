@@ -9,16 +9,18 @@ import { GetStars } from './GetStars'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function App() {
-	const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || '')
+	const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || [])
 	const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
 	const [allTags, setAllTags] = useState([])
+	const [tags, setTags] = useState(() => JSON.parse(localStorage.getItem('tags')) || [])
 
 	useEffect(() => {
 		console.log('render')
 		localStorage.setItem('stars', JSON.stringify(stars))
 		localStorage.setItem('username', JSON.stringify(username))
+		localStorage.setItem('tags', JSON.stringify(tags))
 		if (stars.length > 0) { getAllTags(stars) }
-	}, [stars, setStars, username, setUsername])
+	}, [stars, setStars, username, setUsername, tags, setTags])
 
 	function getAllTags(stars) {
 		const allTags = []
@@ -50,6 +52,7 @@ export function App() {
 						<GetStars
 							username={username}
 							setStars={setStars}
+							setTags={setTags}
 						/>
 
 						<User
@@ -68,6 +71,8 @@ export function App() {
 							stars={stars}
 							setStars={setStars}
 							allTags={allTags}
+							tags={tags}
+							setTags={setTags}
 						/>}
 					/>
 				</Switch>
