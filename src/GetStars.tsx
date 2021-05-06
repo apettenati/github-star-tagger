@@ -40,10 +40,7 @@ export function GetStars({ username, setStars, setTags }) {
 
 	function setTagData(starData) {
 		const tags = []
-		starData.forEach((star) => {
-			return tags.push({username, starID: star.id, tags: star.tags})
-		})
-		setTags(tags)
+		starData.forEach((star) => tags.push({username, starID: star.id, tags: star.tags }))
 	}
 
 	async function getStarData() {
@@ -74,7 +71,7 @@ export function GetStars({ username, setStars, setTags }) {
 			}
 			starData.push(...data)
 		}
-		const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], show: true }))
+		const newStarData = starData.map((star) => ({ ...star, tags: [] as string[], visible: true }))
 		console.log({ newStarData })
 		setStars(newStarData)
 		setTagData(newStarData)

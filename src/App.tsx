@@ -14,15 +14,15 @@ export function App() {
 	const [tags, setTags] = useState(() => JSON.parse(localStorage.getItem('tags')) || [])
 
 	useEffect(() => {
-		console.log('render')
+		console.log('render username')
 		localStorage.setItem('username', JSON.stringify(username))
 	}, [username, setUsername])
 
 	useEffect(() => {
-		console.log('render')
+		console.log('render LS')
 		localStorage.setItem('stars', JSON.stringify(stars))
 		localStorage.setItem('tags', JSON.stringify(tags))
-	}, [stars, setStars, tags, setTags])
+	}, [stars, tags])
 
 	return (
 		<Router>

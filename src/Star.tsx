@@ -5,6 +5,7 @@ export function Star({ star, setStar }) {
 	const setTags = (tags) => setStar({ ...star, tags })
 	const addTag = (newTag) => setTags([...star.tags, newTag])
 	const removeTag = (removedTag) => setTags(star.tags.filter((tag) => tag !== removedTag))
+	const setVisibility = (visible: boolean) => setStar({ ...star, visible })
 
 	return (
 		<div className="container-fluid d-flex flex-column p-0">
