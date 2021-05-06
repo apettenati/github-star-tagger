@@ -12,7 +12,7 @@ export function EditTags({ star, addTag, removeTag }) {
 	function onSubmit(event) {
 		event.preventDefault()
 		const newTag = event.target['add-tag'].value.trim()
-		console.log({newTag})
+		// console.log({newTag})
 
 		if (star.tags.includes(newTag)) {
 			alert('Tag already assigned to this star')

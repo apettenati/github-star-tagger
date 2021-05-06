@@ -16,7 +16,7 @@ export const Filter = ({ stars, setStars }) => {
 
 		// Show all untagged stars.
 		if (currentTags.includes('untagged') && currentTags.length === 1) {
-			console.log('untagged')
+			// console.log('untagged')
 			return setStars(stars => stars.map((star) => {
 				const visible = (star.tags.length === 0)
 				return { ...star, visible}
@@ -25,7 +25,7 @@ export const Filter = ({ stars, setStars }) => {
 
 		// Set all stars to visible if no filter is set.
 		if (tagFilter.length === 0) {
-			console.log('no filter')
+			// console.log('no filter')
 			return setStars(stars => stars.map(star => ({ ...star, visible: true })))
 		}
 

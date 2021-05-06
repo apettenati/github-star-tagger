@@ -1,4 +1,4 @@
-import starDataWithTags from './star-data-with-tags.json'
+import starDataWithTags from '../static/star-data-with-tags.json'
 import { useHistory } from 'react-router-dom'
 
 export function Demo({ setStars, setUsername }) {
