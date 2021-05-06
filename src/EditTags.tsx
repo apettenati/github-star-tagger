@@ -3,24 +3,28 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { FaEdit, FaTimes } from 'react-icons/fa'
 import { RemoveTag } from './Tag'
 
-export function EditTags({ starID, tags, addTag, removeTag }) {
+export function EditTags({ star, addTag, removeTag }) {
 	const [show, setShow] = useState(false)
-	const [text, setText] = useState('')
-	const [tempStar, setTempStar] = useState({ starID, tags })
 
 	const handleShow = () => setShow(true)
 	const handleClose = () => setShow(false)
 
 	function onSubmit(event) {
 		event.preventDefault()
-		const id = Number(event.target.id)
-		const newTag = text.trim()
+		const newTag = event.target['add-tag'].value.trim()
+		console.log({newTag})
+
+		if (star.tags.includes(newTag)) {
+			alert('Tag already assigned to this star')
+			return
+		}
 		if (newTag === '') {
 			alert('Please enter text to add a new tag')
 			return
 		}
-		addTag(id, newTag)
-		setText('')
+
+		addTag(newTag)
+		event.target['add-tag'].value = ''
 	}
 
 	return (
@@ -34,14 +38,12 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
 					<Modal.Title>Edit Tags</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form id={starID} onSubmit={onSubmit}>
+					<Form id={star.id} onSubmit={onSubmit}>
 						<Form.Group>
 							<Form.Label htmlFor="add-tag">Add Tag</Form.Label>
 							<Form.Control
 								type="text"
 								name="add-tag"
-								value={text}
-								onChange={(event) => setText(event.target.value)}
 							/>
 							<Button className="mt-2 btn btn-success" type="submit">Add Tag</Button>
 						</Form.Group>
@@ -49,14 +51,13 @@ export function EditTags({ starID, tags, addTag, removeTag }) {
 						<Form.Group>
 							<Form.Label htmlFor="remove-tag">Remove Tag</Form.Label>
 							<div className="d-flex justify-content-start gap-1">
-								{(tags.length === 0) ?
+								{(star.tags.length === 0) ?
 									<button className="tag btn btn-outline-secondary disabled">untagged</button> : null}
-								{tags.map((tag) => (
+								{star.tags.map((tag) => (
 									< RemoveTag
 										key={tag}
 										tag={tag}
-										starID={starID}
-										removeTag={removeTag}
+										removeTag={() => removeTag(tag)}
 									/>
 								))}
 							</div>

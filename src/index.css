@@ -10,3 +10,9 @@
 .star-card {
   flex: 1 1 auto;
 }
+
+.remove-tag-btn:hover {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  border-left-width: 0px !important;
+}

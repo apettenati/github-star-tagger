@@ -11,31 +11,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export function App() {
 	const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || [])
 	const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
-	const [allTags, setAllTags] = useState([])
 	const [tags, setTags] = useState(() => JSON.parse(localStorage.getItem('tags')) || [])
 
 	useEffect(() => {
 		console.log('render')
-		localStorage.setItem('stars', JSON.stringify(stars))
 		localStorage.setItem('username', JSON.stringify(username))
-		localStorage.setItem('tags', JSON.stringify(tags))
-		if (stars.length > 0) { getAllTags(stars) }
-	}, [stars, setStars, username, setUsername, tags, setTags])
+	}, [username, setUsername])
 
-	function getAllTags(stars) {
-		const allTags = []
-		if (stars.length > 1) {
-			stars.map((star): void => {
-				(star.tags.map(tag => {
-					if (!allTags.includes(tag)) {
-						allTags.push(tag)
-					}
-				}))
-			})
-			console.log({ allTags })
-			setAllTags(allTags)
-		}
-	}
+	useEffect(() => {
+		console.log('render')
+		localStorage.setItem('stars', JSON.stringify(stars))
+		localStorage.setItem('tags', JSON.stringify(tags))
+	}, [stars, setStars, tags, setTags])
 
 	return (
 		<Router>
@@ -70,9 +57,6 @@ export function App() {
 						<Stars
 							stars={stars}
 							setStars={setStars}
-							allTags={allTags}
-							tags={tags}
-							setTags={setTags}
 						/>}
 					/>
 				</Switch>

@@ -2,46 +2,11 @@ import { Star } from './Star'
 import { Filter } from './Filter'
 import { useState, useEffect } from 'react'
 
-export function Stars({ stars, setStars, allTags, tags, setTags }) {
+export function Stars({ stars, setStars }) {
 	const [filteredTags, setFilteredTags] = useState([])
 	const [filteredStars, setFilteredStars] = useState(stars)
 
-	useEffect(() => {
-		console.log({ filteredTags })
-		filterStars()
-	}, [filteredTags, stars])
-
-	function addTag(id, newTag) {
-		stars.forEach((star) => {
-			if (star.id === id) {
-				if (star.tags.includes(newTag)) {
-					alert('Tag already assigned to this star')
-					return
-				}
-				else {
-					setStars(stars.map((star) => star.id === id ?
-						{ ...star, tags: [...star.tags, newTag] } :
-						star
-					))
-					setTags(tags.map((tag) => tag.starID === id ?
-						{...tag, tags: [...tag.tags, newTag]} :
-						tag
-					))
-				}
-			}
-		})
-	}
-
-	function removeTag(id, removedTag) {
-		setStars(stars.map((star) => star.id === id ?
-			{ ...star, tags: (star.tags.filter((tag) => tag !== removedTag)) } :
-			star
-		))
-		setTags(tags.map((tag) => tag.starID === id ?
-			{ ...tag, tags: (tag.tags.filter((tag) => tag !== removedTag)) } :
-			tag
-		))
-	}
+	useEffect(filterStars, [filteredTags, stars])
 
 	function filterStars() {
 		if (filteredTags.length < 1) {
@@ -56,14 +21,17 @@ export function Stars({ stars, setStars, allTags, tags, setTags }) {
 				const noTags = stars.filter((star) => star.tags.length === 0)
 				filter.push(...noTags)
 			}
-			console.log({ filter })
+			console.log({ useEffectFilter: filter })
 			setFilteredStars(filter)
 		}
 	}
 
-	function filterNoTags() {
-		const noTags = stars.filter((star) => star.tags.length === 0)
-		setFilteredStars(noTags)
+	function setStar(updatedStar) {
+		setStars(stars.map((star) => 
+			star.id === updatedStar.id
+				? updatedStar
+				: star
+		))
 	}
 
 	function showAll() {
@@ -75,10 +43,9 @@ export function Stars({ stars, setStars, allTags, tags, setTags }) {
 		<div className="stars container">
 			<div className="container-fluid d-flex justify-content-between">
 				<Filter
-					allTags={allTags}
+					stars={stars}
 					filteredTags={filteredTags}
 					setFilteredTags={setFilteredTags}
-					filterNoTags={filterNoTags}
 					showAll={showAll}
 				/>
 				<div>
@@ -87,17 +54,11 @@ export function Stars({ stars, setStars, allTags, tags, setTags }) {
 				</div>
 			</div>
 			<div className="row row-cols-3">
-				{(stars.length < 1 ?
-					'No stars' :
-					filteredStars.map((star) => (
-						<Star
-							key={star.id}
-							star={star}
-							addTag={addTag}
-							removeTag={removeTag}
-						/>
-					)
-					))}
+				{
+					stars.length < 1
+						? 'No stars'
+						: filteredStars.map((star) => (<Star key={star.id} star={star} setStar={setStar} />))
+				}
 			</div>
 		</div>
 	)

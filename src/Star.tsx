@@ -1,7 +1,10 @@
 import { EditTags } from './EditTags'
 import { Tag } from './Tag'
 
-export function Star({ star, addTag, removeTag }) {
+export function Star({ star, setStar }) {
+	const setTags = (tags) => setStar({ ...star, tags })
+	const addTag = (newTag) => setTags([...star.tags, newTag])
+	const removeTag = (removedTag) => setTags(star.tags.filter((tag) => tag !== removedTag))
 
 	return (
 		<div className="container-fluid d-flex flex-column p-0">
@@ -20,8 +23,7 @@ export function Star({ star, addTag, removeTag }) {
 						<Tag key={tag} tag={tag} />
 					))}
 					<EditTags
-						starID={star.id}
-						tags={star.tags}
+						star={star}
 						addTag={addTag}
 						removeTag={removeTag}
 					/>

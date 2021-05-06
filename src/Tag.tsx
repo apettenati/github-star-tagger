@@ -1,16 +1,6 @@
 import { FaTags, FaTimes } from 'react-icons/fa'
 
-interface TagProps {
-  tag: string
-}
-
-interface RemoveTagProps {
-  tag: string
-  starID: number
-  removeTag: (starID: number, tag: string) => void
-}
-
-export const Tag = ({ tag }: TagProps) => {
+export const Tag = ({ tag }) => {
 	return (
 		<button key={tag} className="tag me-2 btn btn-outline-secondary">
 			<FaTags className="me-1" />
@@ -19,12 +9,16 @@ export const Tag = ({ tag }: TagProps) => {
 	)
 }
 
-export const RemoveTag: React.FC<RemoveTagProps> = ({ tag, starID, removeTag }) => {
+export const RemoveTag = ({ tag, removeTag }) => {
 	return (
-		<span id={starID.toString()} onClick={() => removeTag(starID, tag)} key={tag} className="tag btn btn-outline-danger">
-			<FaTags className="me-1" />
-			{tag}
-			<FaTimes className="ms-2" />
-		</span>
+		<div className="btn-group" role="group" aria-label="Basic example">
+			<button type="button" className="btn btn-outline-secondary rmv-border-right">
+				<span onClick={removeTag}>
+					<FaTags className="me-1" />
+					{tag}
+				</span>
+			</button>
+			<button type="button" onClick={removeTag} className="btn btn-outline-secondary rmv-border-left remove-tag-btn"><FaTimes /></button>
+		</div>
 	)
 }
