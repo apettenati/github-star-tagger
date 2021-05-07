@@ -11,8 +11,24 @@
   flex: 1 1 auto;
 }
 
+.tag-hover {
+  border-right: none !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+.tag-hover:hover, .tag-hover:active {
+  background-color: unset !important;
+  color: rgb(48, 52, 57) !important;
+  pointer-events: none;
+}
+
+.remove-tag-btn {
+  border-left: none !important;
+  padding: 0.25rem 0.5rem !important;
+  /* padding: 0.5rem !important; */
+}
+
 .remove-tag-btn:hover {
   background-color: #dc3545 !important;
   border-color: #dc3545 !important;
-  border-left-width: 0px !important;
 }

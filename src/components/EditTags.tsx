@@ -15,11 +15,12 @@ export function EditTags({ star, addTag, removeTag }) {
 		// console.log({newTag})
 
 		if (star.tags.includes(newTag)) {
-			alert('Tag already assigned to this star')
+			// alert('Tag already assigned to this star')
+			event.target['add-tag'].value = ''
 			return
 		}
 		if (newTag === '') {
-			alert('Please enter text to add a new tag')
+			// alert('Please enter text to add a new tag')
 			return
 		}
 
@@ -50,11 +51,12 @@ export function EditTags({ star, addTag, removeTag }) {
 						<br />
 						<Form.Group>
 							<Form.Label htmlFor="remove-tag">Remove Tag</Form.Label>
-							<div className="d-flex justify-content-start gap-1">
-								{(star.tags.length === 0) ?
-									<button className="tag btn btn-outline-secondary disabled">untagged</button> : null}
+							<div className="d-flex flex-wrap justify-content-start gap-1">
+								{(star.tags.length === 0)
+									? <button className="tag btn btn-outline-secondary disabled">untagged</button>
+									: null}
 								{star.tags.map((tag) => (
-									< RemoveTag
+									<RemoveTag
 										key={tag}
 										tag={tag}
 										removeTag={() => removeTag(tag)}

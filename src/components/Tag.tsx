@@ -12,13 +12,11 @@ export const Tag = ({ tag }) => {
 export const RemoveTag = ({ tag, removeTag }) => {
 	return (
 		<div className="btn-group" role="group" aria-label="Basic example">
-			<button type="button" className="btn btn-outline-secondary rmv-border-right">
-				<span onClick={removeTag}>
-					<FaTags className="me-1" />
-					{tag}
-				</span>
-			</button>
-			<button type="button" onClick={removeTag} className="btn btn-outline-secondary rmv-border-left remove-tag-btn"><FaTimes /></button>
+			<span className="btn btn-outline-secondary tag-hover">
+				<FaTags className="me-1" />
+				{tag}
+			</span>
+			<button type="button" onClick={removeTag} className="btn btn-sm btn-outline-secondary rmv-border-left remove-tag-btn"><FaTimes /></button>
 		</div>
 	)
 }
