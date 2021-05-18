@@ -21,8 +21,13 @@ export function App() {
 	useEffect(() => {
 		console.log('render LS')
 		localStorage.setItem('stars', JSON.stringify(stars))
+		setTags({ username, 'stars': stars.map((star) => ({ 'starID': star.id, 'tags': star.tags })) })
+	}, [stars, username])
+
+	useEffect(() => {
+		console.log('save tags')
 		localStorage.setItem('tags', JSON.stringify(tags))
-	}, [stars, tags])
+	}, [tags])
 
 	return (
 		<Router>
@@ -39,7 +44,6 @@ export function App() {
 						<GetStars
 							username={username}
 							setStars={setStars}
-							setTags={setTags}
 						/>
 
 						<User
@@ -49,6 +53,7 @@ export function App() {
 						<Demo
 							setStars={setStars}
 							setUsername={setUsername} />
+
 					</main>
 				)}
 				/>
