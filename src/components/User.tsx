@@ -12,7 +12,7 @@ export function User({ username, setUsername }) {
     const newUsername = event.target['new-username'].value.trim()
     console.log(newUsername)
     if (newUsername === '') {
-      alert('Please enter text to change the username')
+      // alert('Please enter text to change the username')
       return
     }
     setUsername(newUsername)
