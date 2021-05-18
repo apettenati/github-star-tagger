@@ -10,20 +10,20 @@ export const Filter = ({ stars, setStars }) => {
 	useEffect(createOptions, [stars])
 
 	function filterStars() {
-		// Get all tags set.
+		// get all tags set
 		const currentTags = tagFilter.map((tag) => tag.value)
 		// console.log({ currentTags })
 
-		// Show all untagged stars.
+		// show all untagged stars
 		if (currentTags.includes('untagged') && currentTags.length === 1) {
 			// console.log('untagged')
 			return setStars(stars => stars.map((star) => {
 				const visible = (star.tags.length === 0)
-				return { ...star, visible}
+				return { ...star, visible }
 			}))
 		}
 
-		// Set all stars to visible if no filter is set.
+		// set all stars to visible if no filter is set
 		if (tagFilter.length === 0) {
 			// console.log('no filter')
 			return setStars(stars => stars.map(star => ({ ...star, visible: true })))
@@ -38,7 +38,7 @@ export const Filter = ({ stars, setStars }) => {
 	}
 
 	function showAll() {
-		setStars(stars.map(star => ({ ...star, visible: true})))
+		setStars(stars.map(star => ({ ...star, visible: true })))
 		setFilter([])
 	}
 
