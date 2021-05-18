@@ -15,19 +15,22 @@ export function Star({ star, setStar }) {
 					<h6 className="card-subtitle mb-4 text-muted fst-italic">{star.owner.login}</h6>
 					<p className="card-text fst-light">{star.description}</p>
 				</div>
-				<div className="d-flex card-footer justify-content-start gap-1">
+				<div className="d-flex flex-wrap card-footer justify-content-start gap-1">
+
 					{(star.tags.length === 0) ?
 						<button className="tag btn btn-outline-secondary disabled">untagged</button> :
-						null
-					}
+						null}
+
 					{star.tags.map((tag) => (
 						<Tag key={tag} tag={tag} />
 					))}
+
 					<EditTags
 						star={star}
 						addTag={addTag}
 						removeTag={removeTag}
 					/>
+
 				</div>
 			</div>
 		</div>
