@@ -53,21 +53,17 @@ export const Filter = ({ stars, setStars }) => {
 
 	return (
 		<div className="tag-filter col-3">
-			<h4>Tag Filter</h4>
-			<div className="tag-selector">
-				<Select
-					components={makeAnimated()}
-					options={options}
-					className="mb-3 font-weight-bold"
-					isSearchable
-					isMulti
-					onChange={setFilter}
-					value={tagFilter}
-				/>
-			</div>
-			<div className="current-filter">
-				<button onClick={showAll} className="btn btn-primary mb-4">Show All</button>
-			</div>
+			<Select
+				components={makeAnimated()}
+				options={options}
+				className="tag-selector mb-2"
+				isSearchable
+				isMulti
+				onChange={setFilter}
+				value={tagFilter}
+				placeholder='Filter Tags'
+			/>
+			<button onClick={showAll} className="btn btn-primary mb-4">Show All</button>
 		</div>
 	)
 }
