@@ -1,8 +1,17 @@
 import { Star } from './Star'
 import { Filter } from './Filter'
+import { useEffect, useState } from 'react'
 
 export function Stars({ stars, setStars }) {
 	const visibleStars = stars.filter((star) => (star.visible))
+	const SHOW_PAGE_LIMIT = 5
+	const STARS_PER_PAGE = 100
+	const [lastPage] = useState(Math.ceil(stars.length / STARS_PER_PAGE))
+	const [currentPage, setCurrentPage] = useState(1)
+
+	useEffect(() => {
+		window.scrollTo({ behavior: 'smooth', top: 0 })
+	}, [currentPage])
 
 	function setStar(updatedStar) {
 		setStars(stars.map((star) =>
@@ -12,21 +21,82 @@ export function Stars({ stars, setStars }) {
 		))
 	}
 
+	function goToNextPage() { setCurrentPage((page) => page + 1) }
+
+	function goToPreviousPage() { setCurrentPage((page) => page - 1) }
+
+	function changePage(event) {
+		console.log({ event })
+		const pageNumber = Number(event.target.textContent)
+		setCurrentPage(pageNumber)
+	}
+
+	function getPageStars() {
+		const firstStar = currentPage * STARS_PER_PAGE - STARS_PER_PAGE
+		console.log({ firstStar })
+		const lastStar = firstStar + STARS_PER_PAGE
+		console.log({ lastStar })
+		console.log({ lastPage })
+		return visibleStars.slice(firstStar, lastStar)
+	}
+
+	function getPaginationGroup() {
+		const pageGroup = []
+		let pageNumber = currentPage < 3 ? 1 : currentPage
+
+		while (pageGroup.length < SHOW_PAGE_LIMIT) {
+			if (pageNumber > lastPage) return pageGroup
+			pageGroup.push(pageNumber)
+			pageNumber += 1
+		}
+
+		return pageGroup
+	}
+
+	// TODO
+	// route current page
+
 	return (
-		<div className="stars container">
+		<div className="user container">
+
 			<div className="container-fluid d-flex justify-content-between">
 				<Filter
 					stars={stars}
 					setStars={setStars}
 				/>
-				<div>
-					<h4 className="text-muted fst-italic">Total Stars: {stars.length}</h4>
-					<h5 className="mb-4 text-muted fst-italic">Filtered Stars: {visibleStars.length}</h5>
+				<div className="star-counts">
+					<h4 className="mb-3 text-muted fst-italic">Total Stars: {stars.length}</h4>
+					<h5 className="text-muted fst-italic">Filtered Stars: {visibleStars.length}</h5>
 				</div>
 			</div>
-			<div className="row row-cols-3">
-				{visibleStars.map((star) => (<Star key={star.id} star={star} setStar={setStar} />))}
+
+			<div className="stars row">
+				{getPageStars().map((star, i) => (
+					<Star key={i} star={star} setStar={setStar} />
+				))}
 			</div>
+
+			<nav>
+				<ul className="pagination mt-4 d-flex justify-content-center">
+
+					<li className="page-item"><button className={`page-link ${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage}>Previous</button></li>
+
+					{getPaginationGroup().map((star, i) => (
+						<li className="page-item">
+							<button
+								key={i}
+								onClick={changePage}
+								className={`page-link ${currentPage === star ? 'active' : null}`}
+							>
+								<span>{star}</span>
+							</button>
+						</li>
+					))}
+					<li className="page-item"><button onClick={goToNextPage} className={`page-link ${currentPage === lastPage ? 'disabled' : ''}`} >Next</button></li>
+
+				</ul>
+			</nav>
+
 		</div>
 	)
 }
