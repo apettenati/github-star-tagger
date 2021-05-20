@@ -32,3 +32,12 @@
   background-color: #dc3545 !important;
   border-color: #dc3545 !important;
 }
+
+.page-link.active {
+  background-color: #0a58ca;
+  color: white;
+}
+
+.page-link.disabled {
+  display: none;
+}

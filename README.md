@@ -23,6 +23,6 @@ Add tags to your starred repositories on GitHub!
 - [X] validate username
 - [X] update CSS
 - [X] add demo data
-- [ ] create pagination
+- [X] create pagination
 - [X] separate star and tag data in local storage
 - [X] refactor - move state to proper components and review
