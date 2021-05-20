@@ -8,7 +8,7 @@ export function Star({ star, setStar }) {
 	// const setVisibility = (visible: boolean) => setStar({ ...star, visible })
 
 	return (
-		<div className="container-fluid d-flex flex-column p-0">
+		<div className="container-fluid d-flex flex-column col-3 p-0 m-0">
 			<div className="star-card card m-1">
 				<div className="card-body">
 					<h4 className=""><a className="star-header" href={star.html_url}>{star.name}</a></h4>
