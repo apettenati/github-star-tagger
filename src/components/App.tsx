@@ -20,14 +20,25 @@ export function App() {
 
 	useEffect(() => {
 		console.log('render LS')
-		localStorage.setItem('stars', JSON.stringify(stars))
+		// localStorage.setItem('stars', JSON.stringify(stars))
 		setTags({ username, 'stars': stars.map((star) => ({ 'starID': star.id, 'tags': star.tags })) })
 	}, [stars, username])
 
 	useEffect(() => {
 		console.log('save tags')
 		localStorage.setItem('tags', JSON.stringify(tags))
+
+		const url = `http://localhost:3001/github-star-tagger/user/${username}`
+		fetch(url, {
+			method: 'post',
+			headers: {
+				'Content-type': 'application/json'
+			},
+			body: JSON.stringify({ tags })
+		})
+
 	}, [tags])
+
 
 	return (
 		<Router>
