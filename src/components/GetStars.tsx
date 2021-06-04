@@ -28,14 +28,13 @@ export function GetStars({ username, setStars }) {
 		try {
 			// get API link data from header to determine how many pages to fetch
 			const lastPage = await getLastPageNumber()
-
-			// console.log('last page from getLastPage', lastPage)
+			// get star data from each API page
 			const starData = await getAllStars(lastPage)
-
+			// apply custom fields to star data
 			const newStarData = modifyStarData(starData)
-			// console.log({ newStarData })
-
-			setStars(newStarData)
+			// retreive existing tags from database and apply to star data
+			const updatedStarData = await applyDatabaseTags(newStarData)
+			setStars(updatedStarData)
 		} catch (error) {
 			throw error
 		}
@@ -85,11 +84,41 @@ export function GetStars({ username, setStars }) {
 
 			const stars = await Promise.all(starRequests)
 			const starData = stars.flat()
-			console.log({ starData })
+			// console.log({ starData })
 			return starData
 		} catch (error) {
 			throw error
 		}
+	}
+
+	async function getMongoData() {
+		const url = `http://localhost:3001/github-star-tagger/user/${username}`
+		const response = await fetch(url, {
+			method: 'get',
+			headers: { 'Content-type': 'application/json' }
+		})
+		if (response.ok) {
+			const json = await response.json()
+			return json
+		} else {
+			throw Error(`failed to get response from server`)
+		}
+	}
+
+	async function applyDatabaseTags(stars) {
+		const data = await getMongoData()
+		const tags = data.stars
+		// apply tags from database to fetched star data
+		tags.forEach((tag) => {
+			stars.forEach((star) => {
+				if (tag.starID === star.id) {
+					star.tags = tag.tags
+				}
+			})
+
+		})
+		console.log({ stars })
+		return stars
 	}
 
 	function modifyStarData(starData) {

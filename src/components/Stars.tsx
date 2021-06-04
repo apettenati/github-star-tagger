@@ -32,10 +32,10 @@ export function Stars({ stars, setStars }) {
 
 	function getPageStars() {
 		const firstStar = currentPage * STARS_PER_PAGE - STARS_PER_PAGE
-		console.log({ firstStar })
+		// console.log({ firstStar })
 		const lastStar = firstStar + STARS_PER_PAGE
-		console.log({ lastStar })
-		console.log({ lastPage })
+		// console.log({ lastStar })
+		// console.log({ lastPage })
 		return visibleStars.slice(firstStar, lastStar)
 	}
 
