@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/github-star-tagger/static/css/main.77e42938.chunk.css",
-    "main.js": "/github-star-tagger/static/js/main.8c07a6b8.chunk.js",
-    "main.js.map": "/github-star-tagger/static/js/main.8c07a6b8.chunk.js.map",
+    "main.js": "/github-star-tagger/static/js/main.c02d2754.chunk.js",
+    "main.js.map": "/github-star-tagger/static/js/main.c02d2754.chunk.js.map",
     "runtime-main.js": "/github-star-tagger/static/js/runtime-main.eb5ee72e.js",
     "runtime-main.js.map": "/github-star-tagger/static/js/runtime-main.eb5ee72e.js.map",
     "static/css/2.3542fc70.chunk.css": "/github-star-tagger/static/css/2.3542fc70.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.3542fc70.chunk.css",
     "static/js/2.0cdd4290.chunk.js",
     "static/css/main.77e42938.chunk.css",
-    "static/js/main.8c07a6b8.chunk.js"
+    "static/js/main.c02d2754.chunk.js"
   ]
 }
