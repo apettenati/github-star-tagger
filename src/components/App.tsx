@@ -15,19 +15,23 @@ export function App() {
 
 	useEffect(() => {
 		console.log('render username')
+		// save username to local storage
 		localStorage.setItem('username', JSON.stringify(username))
 	}, [username, setUsername])
 
 	useEffect(() => {
 		console.log('render LS')
-		// localStorage.setItem('stars', JSON.stringify(stars))
+		// save star data to local storage
+		localStorage.setItem('stars', JSON.stringify(stars))
+		// get just tag data from stars and save tags
 		setTags({ username, 'stars': stars.map((star) => ({ 'starID': star.id, 'tags': star.tags })) })
 	}, [stars, username])
 
 	useEffect(() => {
 		console.log('save tags')
-		localStorage.setItem('tags', JSON.stringify(tags))
+		// localStorage.setItem('tags', JSON.stringify(tags))
 
+		// save tag data to database
 		const url = `http://localhost:3001/github-star-tagger/user/${username}`
 		fetch(url, {
 			method: 'post',
