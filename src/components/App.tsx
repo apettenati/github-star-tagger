@@ -9,29 +9,32 @@ import { GetStars } from './GetStars'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function App() {
-	const [stars, setStars] = useState(() => JSON.parse(localStorage.getItem('stars')) || [])
 	const [username, setUsername] = useState(() => (JSON.parse(localStorage.getItem('username')) || ''))
-	const [tags, setTags] = useState(() => JSON.parse(localStorage.getItem('tags')) || [])
+	const [stars, setStars] = useState(() => [])
+	const [tags, setTags] = useState(() => JSON.parse(localStorage.getItem(`tags:${username}`)) || {})
 
 	useEffect(() => {
-		console.log('render username')
 		// save username to local storage
 		localStorage.setItem('username', JSON.stringify(username))
 	}, [username, setUsername])
 
 	useEffect(() => {
-		console.log('render LS')
 		// save star data to local storage
-		localStorage.setItem('stars', JSON.stringify(stars))
+		// localStorage.setItem(`stars:${username}`, JSON.stringify(stars))
 		// get just tag data from stars and save tags
-		setTags({ username, 'stars': stars.map((star) => ({ 'starID': star.id, 'tags': star.tags })) })
-	}, [stars, username])
+		setTags({ 'stars': stars.map((star) => ({ 'starID': star.id, 'tags': star.tags })) })
+		// do NOT include username in dependency array since it is unique by user
+	}, [stars])
+
 
 	useEffect(() => {
-		console.log('save tags')
-		// localStorage.setItem('tags', JSON.stringify(tags))
-
+		localStorage.setItem(`tags:${username}`, JSON.stringify(tags))
 		// save tag data to database
+		// saveDatabase()
+
+	}, [tags])
+
+	function saveDatabase() {
 		const url = `http://localhost:3001/github-star-tagger/user/${username}`
 		fetch(url, {
 			method: 'post',
@@ -40,9 +43,7 @@ export function App() {
 			},
 			body: JSON.stringify({ tags })
 		})
-
-	}, [tags])
-
+	}
 
 	return (
 		<Router>
@@ -64,6 +65,7 @@ export function App() {
 						<User
 							username={username}
 							setUsername={setUsername}
+							setStars={setStars}
 						/>
 						<Demo
 							setStars={setStars}

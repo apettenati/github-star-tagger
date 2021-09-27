@@ -12,11 +12,9 @@ export const Filter = ({ stars, setStars }) => {
 	function filterStars() {
 		// get all tags set
 		const currentTags = tagFilter.map((tag) => tag.value)
-		// console.log({ currentTags })
 
 		// show all untagged stars
 		if (currentTags.includes('untagged') && currentTags.length === 1) {
-			// console.log('untagged')
 			return setStars(stars => stars.map((star) => {
 				const visible = (star.tags.length === 0)
 				return { ...star, visible }
@@ -25,7 +23,6 @@ export const Filter = ({ stars, setStars }) => {
 
 		// set all stars to visible if no filter is set
 		if (tagFilter.length === 0) {
-			// console.log('no filter')
 			return setStars(stars => stars.map(star => ({ ...star, visible: true })))
 		}
 
@@ -47,7 +44,6 @@ export const Filter = ({ stars, setStars }) => {
 		stars.forEach((star) => allTags.push(...star.tags))
 		const uniqueTags = [...new Set(allTags)]
 		const options = uniqueTags.map((tag) => ({ 'value': tag, 'label': tag }))
-		// console.log({ options })
 		setOptions([...options, { 'value': 'untagged', 'label': 'untagged' }])
 	}
 

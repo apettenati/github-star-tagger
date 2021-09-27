@@ -25,17 +25,13 @@ export function Stars({ stars, setStars }) {
 	function goToPreviousPage() { setCurrentPage((page) => page - 1) }
 
 	function changePage(event) {
-		console.log({ event })
 		const pageNumber = Number(event.target.textContent)
 		setCurrentPage(pageNumber)
 	}
 
 	function getPageStars() {
 		const firstStar = currentPage * STARS_PER_PAGE - STARS_PER_PAGE
-		// console.log({ firstStar })
 		const lastStar = firstStar + STARS_PER_PAGE
-		// console.log({ lastStar })
-		// console.log({ lastPage })
 		return visibleStars.slice(firstStar, lastStar)
 	}
 
@@ -68,12 +64,12 @@ export function Stars({ stars, setStars }) {
 			<nav>
 				<ul className="pagination mt-4 d-flex justify-content-center">
 
-					<li className="page-item"><button className={`page-link ${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage}>Previous</button></li>
+					<li key='previous' className="page-item"><button className={`page-link ${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage}>Previous</button></li>
 
 					{getPaginationGroup().map((star, i) => (
-						<li className="page-item">
+						<li key={star} className="page-item">
 							<button
-								key={i}
+								key={star}
 								onClick={changePage}
 								className={`page-link ${currentPage === star ? 'active' : null}`}
 							>
@@ -81,7 +77,7 @@ export function Stars({ stars, setStars }) {
 							</button>
 						</li>
 					))}
-					<li className="page-item"><button onClick={goToNextPage} className={`page-link ${currentPage === lastPage ? 'disabled' : ''}`} >Next</button></li>
+					<li key='next' className="page-item"><button onClick={goToNextPage} className={`page-link ${currentPage === lastPage ? 'disabled' : ''}`} >Next</button></li>
 
 				</ul>
 			</nav>
