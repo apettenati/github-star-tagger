@@ -33,8 +33,8 @@ export function GetStars({ username, setStars }) {
 			// apply custom fields to star data
 			const newStarData = modifyStarData(starData)
 			// retreive existing tags from database and apply to star data
-			const updatedStarData = await applyDatabaseTags(newStarData)
-			setStars(updatedStarData)
+			// const updatedStarData = await applyDatabaseTags(newStarData)
+			setStars(newStarData)
 		} catch (error) {
 			throw error
 		}
