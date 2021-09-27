@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap'
 import { FaUser, FaTimes } from 'react-icons/fa'
 
-export function User({ username, setUsername }) {
+export function User({ username, setUsername, setStars }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -10,7 +10,6 @@ export function User({ username, setUsername }) {
   function onSubmit(event) {
     event.preventDefault()
     const newUsername = event.target['new-username'].value.trim()
-    console.log(newUsername)
     if (newUsername === '') {
       // alert('Please enter text to change the username')
       return

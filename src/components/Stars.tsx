@@ -25,17 +25,13 @@ export function Stars({ stars, setStars }) {
 	function goToPreviousPage() { setCurrentPage((page) => page - 1) }
 
 	function changePage(event) {
-		console.log({ event })
 		const pageNumber = Number(event.target.textContent)
 		setCurrentPage(pageNumber)
 	}
 
 	function getPageStars() {
 		const firstStar = currentPage * STARS_PER_PAGE - STARS_PER_PAGE
-		// console.log({ firstStar })
 		const lastStar = firstStar + STARS_PER_PAGE
-		// console.log({ lastStar })
-		// console.log({ lastPage })
 		return visibleStars.slice(firstStar, lastStar)
 	}
 

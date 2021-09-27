@@ -43,7 +43,6 @@ export function GetStars({ username, setStars }) {
 	async function getResponseObject(url: string) {
 		// get the json response containing user star data from provided url
 		const response = await fetch(url)
-		// console.log({ response })
 		if (response.ok) {
 			const json = await response.json()
 			return json
@@ -84,7 +83,6 @@ export function GetStars({ username, setStars }) {
 
 			const stars = await Promise.all(starRequests)
 			const starData = stars.flat()
-			// console.log({ starData })
 			return starData
 		} catch (error) {
 			throw error
@@ -117,20 +115,34 @@ export function GetStars({ username, setStars }) {
 			})
 
 		})
-		console.log({ stars })
 		return stars
 	}
 
+	// appends new information to the star required for this application
 	function modifyStarData(starData) {
-		// appends new information to the star required for this application
 		// adds a tags key initialized with an empty array
-		// adds a visible key assigned to a boolean of true
-		return starData.map((star) => ({ ...star, tags: [] as string[], visible: true }))
+		// adds a visible key assigned to a boolean of true for filtering
+		let newStarData = starData.map((star) => ({ ...star, tags: [] as string[], visible: true }))
+		
+		// check if tags for this user are already saved
+		const storedData = JSON.parse(localStorage.getItem(`tags:${username}`))
+		if (storedData !== null && storedData.stars) {
+				newStarData.forEach((star) => { 
+					storedData.stars.forEach((savedStar) => {
+						if (savedStar.starID === star.id) {
+							star.tags = savedStar.tags
+						}
+						return
+					})
+				})
+			}
+		return newStarData
 	}
 
 	function redirectToUser() {
 		history.push(`/github-star-tagger/user/${username}`)
 	}
+
 
 	return (
 		<button type="button" className="col-4 mx-auto mb-4 btn btn-lg btn-primary" onClick={getStars}>
