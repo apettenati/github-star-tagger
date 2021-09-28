@@ -1,6 +1,7 @@
 import { Star } from './Star'
 import { Filter } from './Filter'
 import { useEffect, useState } from 'react'
+import { Pagination } from './Pagination'
 
 export function Stars({ stars, setStars }) {
 	const visibleStars = stars.filter((star) => (star.visible))
@@ -20,25 +21,11 @@ export function Stars({ stars, setStars }) {
 		))
 	}
 
-	function goToNextPage() { setCurrentPage((page) => page + 1) }
-
-	function goToPreviousPage() { setCurrentPage((page) => page - 1) }
-
-	function changePage(event) {
-		const pageNumber = Number(event.target.textContent)
-		setCurrentPage(pageNumber)
-	}
-
 	function getPageStars() {
 		const firstStar = currentPage * STARS_PER_PAGE - STARS_PER_PAGE
 		const lastStar = firstStar + STARS_PER_PAGE
 		return visibleStars.slice(firstStar, lastStar)
 	}
-
-	function getPaginationGroup() {
-		return Array.from({ length: lastPage }, (_, i) => i + 1)
-	}
-
 
 	return (
 		<div className="user container">
@@ -55,34 +42,16 @@ export function Stars({ stars, setStars }) {
 			</div>
 
 			<div className="stars row">
-				{getPageStars().map((star, i) => (
-					<Star key={i} star={star} setStar={setStar} />
+				{getPageStars().map((star) => (
+					<Star key={star.id} star={star} setStar={setStar} />
 				))}
 			</div>
 
-			{/* TODO: route current page */}
-			<nav>
-				{(lastPage > 1) &&
-				<ul className="pagination mt-4 d-flex justify-content-center">
-
-					<li key='previous' className="page-item"><button className={`page-link ${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage}>Previous</button></li>
-
-					{getPaginationGroup().map((star, i) => (
-						<li key={star} className="page-item">
-							<button
-								key={star}
-								onClick={changePage}
-								className={`page-link ${currentPage === star ? 'active' : null}`}
-							>
-								<span>{star}</span>
-							</button>
-						</li>
-					))}
-					<li key='next' className="page-item"><button onClick={goToNextPage} className={`page-link ${currentPage === lastPage ? 'disabled' : ''}`} >Next</button></li>
-
-				</ul>
-				}
-			</nav>
+			<Pagination
+				setCurrentPage={setCurrentPage}
+				lastPage={lastPage}
+				currentPage={currentPage}
+			/>
 
 		</div>
 	)
