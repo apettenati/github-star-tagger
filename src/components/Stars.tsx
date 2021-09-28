@@ -62,6 +62,7 @@ export function Stars({ stars, setStars }) {
 
 			{/* TODO: route current page */}
 			<nav>
+				{(lastPage > 1) &&
 				<ul className="pagination mt-4 d-flex justify-content-center">
 
 					<li key='previous' className="page-item"><button className={`page-link ${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage}>Previous</button></li>
@@ -80,6 +81,7 @@ export function Stars({ stars, setStars }) {
 					<li key='next' className="page-item"><button onClick={goToNextPage} className={`page-link ${currentPage === lastPage ? 'disabled' : ''}`} >Next</button></li>
 
 				</ul>
+				}
 			</nav>
 
 		</div>
